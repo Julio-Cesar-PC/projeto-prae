@@ -6,6 +6,7 @@ import InputLabel from '@/Components/InputLabel';
 import PrimaryButton from '@/Components/PrimaryButton';
 import TextInput from '@/Components/TextInput';
 import { Head, Link, useForm } from '@inertiajs/react';
+import { FaGoogle } from 'react-icons/fa'
 
 export default function Login({ status, canResetPassword }) {
     const { data, setData, post, processing, errors, reset } = useForm({
@@ -91,6 +92,11 @@ export default function Login({ status, canResetPassword }) {
                         Log in
                     </PrimaryButton>
                 </div>
+                <hr className='mt-5'/>
+                <a class="bg-[#d0463b] text-white px-4 py-3 flex items-center rounded-full mx-auto mt-5 hover:bg-red-800" href='/login/google'>
+                    <FaGoogle />
+                    <span class="inline-block ml-[4px] mx-auto">Login with google</span>
+                </a>
             </form>
         </GuestLayout>
     );
