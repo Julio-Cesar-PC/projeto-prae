@@ -16,7 +16,7 @@ class LoginController extends Controller
     public function handleProviderCallback()
     {
         try {
-            $googleUser = Socialite::driver('google')->user();
+            $googleUser = Socialite::driver('google')->stateless()->user();
             // dd($googleUser);
 
             // verificando se o usuário já existe
