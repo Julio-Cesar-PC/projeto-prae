@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('book_bid_status', function (Blueprint $table) {
-            $table->id();
+            $table->tinyInteger();
             $table->string('status');
             $table->timestamps();
         });
