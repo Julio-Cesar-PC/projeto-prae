@@ -15,31 +15,28 @@ class LoginController extends Controller
 
     public function handleProviderCallback()
     {
-        try {
-            $googleUser = Socialite::driver('google')->user();
-            // dd($googleUser);
+        $googleUser = Socialite::driver('google')->stateless()->user();
+        // dd($googleUser);
 
-            // verificando se o usuário já existe
-            // se não existir, cria um novo usuário
-            // se existir, atualiza o token
-            $user = User::firstOrCreate(
-                ['provider_id' => $googleUser->getId()],
-                [
-                    'email' => $googleUser->getEmail(),
-                    'name' => $googleUser->getName(),
-                    'provider' => 'google',
-                    'provider_id' => $googleUser->getId(),
-                ]
-            );
+        // verificando se o usuário já existe
+        // se não existir, cria um novo usuário
+        // se existir, atualiza o token
+        $user = User::firstOrCreate(
+            ['provider_id' => $googleUser->getId()],
+            [
+                'email' => $googleUser->getEmail(),
+                'name' => $googleUser->getName(),
+                'provider' => 'google',
+                'provider_id' => $googleUser->getId(),
+            ]
+        );
 
-            // autenticando o usuário
-            auth()->login($user, true);
+        // autenticando o usuário
+        auth()->login($user, true);
 
-            // redirecionando o usuário para a home
-            return redirect()->to('/dashboard');
+        // redirecionando o usuário para a home
+        return redirect()->to('/dashboard');
 
-        } catch (\Exception $e) {
-            dd($e->getMessage());
-        }
+
     }
 }

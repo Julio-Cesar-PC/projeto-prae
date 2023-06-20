@@ -11,6 +11,8 @@ export default {
     ],
 
     theme: {
+
+
         extend: {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
@@ -18,5 +20,8 @@ export default {
         },
     },
 
-    plugins: [forms],
+    plugins: [
+                forms,
+                require("daisyui")
+             ],
 };
