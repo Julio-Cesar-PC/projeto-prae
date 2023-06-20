@@ -1,4 +1,5 @@
 FROM richarvey/nginx-php-fpm
+FROM paketobuildpacks/npm-install
 
 COPY . .
 
