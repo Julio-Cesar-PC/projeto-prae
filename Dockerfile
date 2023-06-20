@@ -1,5 +1,5 @@
 FROM richarvey/nginx-php-fpm
-FROM paketobuildpacks/npm-install
+FROM dockette/nodejs
 
 COPY . .
 
