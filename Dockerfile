@@ -1,5 +1,4 @@
 FROM richarvey/nginx-php-fpm
-FROM dockette/nodejs
 
 COPY . .
 
