@@ -24,8 +24,8 @@ export default function Authenticated({ user, header, children }) {
                                 </NavLink>
 
                                 <details className="dropdown inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none">
-                                    <summary className='btn btn-ghost'>Cadastros</summary>
-                                    <ul className="shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                                    <summary className='btn text-white btn-ghost'>Cadastros</summary>
+                                    <ul className="shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52 text-black">
                                         <li>
                                             <NavLink href={route('livros')} active={route().current('livros')}>
                                                 Livros
