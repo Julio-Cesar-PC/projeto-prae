@@ -6,7 +6,7 @@ export default function TableLivros({ livros }) {
         <div className="py-12">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                    <button className="btn btn-primary mb-5"><FaPlus/> Novo Livro</button>
+                    <a href='livro/cadastro' className="btn btn-primary mb-5"><FaPlus/>Novo Livro</a>
                     <table className="table min-w-full">
                         <thead className="bg-gray-50 dark:bg-gray-700">
                             <tr>

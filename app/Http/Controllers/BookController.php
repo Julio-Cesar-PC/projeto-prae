@@ -19,5 +19,32 @@ class BookController extends Controller
         ]);
     }
 
+    public function cadastroLivros()
+    {
+        return Inertia::render('CadastroLivros');
+    }
+
+    public function store(Request $request)
+    {
+        // dd($request->all());
+
+        $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'publisher' => 'required',
+            'pageCount' => '',
+            'imageLink' => '',
+            'selfLink' => '',
+            'category_id' => '',
+            'available' => '',
+        ]);
+
+        // dd($request);
+
+        Book::create($request->all());
+
+        return redirect()->route('livros');
+    }
+
 
 }
