@@ -17,15 +17,24 @@ export default function Authenticated({ user, header, children }) {
             <div className="flex">
               {/* <div className="shrink-0 flex items-center"></div> */}
 
-              <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                <NavLink
-                  href={route('dashboard')}
-                  active={route().current('dashboard')}
-                >
-                  Dashboard
-                </NavLink>
-              </div>
-            </div>
+
+                            <div className="hidden space-x-8 flex items-center sm:-my-px sm:ml-10 sm:flex">
+                                <NavLink href={route('dashboard')} active={route().current('dashboard')}>
+                                    Dashboard
+                                </NavLink>
+
+                                <details className="dropdown inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none">
+                                    <summary className='btn btn-ghost'>Cadastros</summary>
+                                    <ul className="shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                                        <li>
+                                            <NavLink href={route('livros')} active={route().current('livros')}>
+                                                Livros
+                                            </NavLink>
+                                        </li>
+                                    </ul>
+                                </details>
+                            </div>
+                        </div>
 
             <div className="hidden sm:flex sm:items-center sm:ml-6">
               <div className="ml-3 relative">

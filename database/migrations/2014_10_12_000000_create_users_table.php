@@ -19,6 +19,9 @@ return new class extends Migration
             $table->string('password')->nullable();
             $table->string('provider_id')->nullable();
             $table->string('provider')->nullable();
+            $table->integer('credit')->nullable();
+            $table->boolean('banned')->nullable();
+            $table->boolean('admin')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

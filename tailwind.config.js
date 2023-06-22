@@ -38,6 +38,7 @@ export default {
           warning: '#ec9d3c',
 
           error: '#f0757d',
+
         },
       },
     ],
@@ -45,3 +46,4 @@ export default {
 
   plugins: [forms, require('daisyui')],
 }
+
