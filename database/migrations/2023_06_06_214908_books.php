@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('author');
             $table->string('publisher');
             $table->string('pageCount');
-            $table->string('imageLink');
-            $table->string('selfLink');
+            $table->string('imageLink')->nullable();
+            $table->string('selfLink')->nullable();
             $table->integer('category_id');
-            $table->boolean('available');
+            $table->boolean('available')->nullable();
             $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories');
