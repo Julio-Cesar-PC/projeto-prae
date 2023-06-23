@@ -17,7 +17,13 @@ export default function Authenticated({ user, header, children }) {
             <div className="flex">
               {/* <div className="shrink-0 flex items-center"></div> */}
 
-
+              <div className="hidden space-x-8 flex items-center sm:-my-px sm:ml-10 sm:flex">
+                <NavLink
+                  href={route('dashboard')}
+                  active={route().current('dashboard')}
+                >
+                  Dashboard
+                </NavLink>
                             <div className="hidden space-x-8 flex items-center sm:-my-px sm:ml-10 sm:flex">
                                 <NavLink href={route('dashboard')} active={route().current('dashboard')}>
                                     Dashboard
@@ -40,7 +46,6 @@ export default function Authenticated({ user, header, children }) {
                                 </details>
                             </div>
                         </div>
-
             <div className="hidden sm:flex sm:items-center sm:ml-6">
               <div className="ml-3 relative">
                 <Dropdown>
