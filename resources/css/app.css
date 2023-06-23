@@ -61,3 +61,7 @@ body{
 .aviso{
     margin-top: 12px;
 }
+
+input{
+    color: #212922;
+}

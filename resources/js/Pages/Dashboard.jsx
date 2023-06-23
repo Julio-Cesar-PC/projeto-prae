@@ -1,6 +1,9 @@
-import Modal from '@/Components/Modal'
+import BooksPage from '@/Components/BooksPage'
+import LibraryTable from '@/Components/LibraryTable'
+import AdminPage from '@/Components/AdminPage'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import { Head } from '@inertiajs/react'
+import CategoryPage from '@/Components/CategoryPage'
 
 export default function Dashboard({ auth }) {
   return (
@@ -29,6 +32,20 @@ export default function Dashboard({ auth }) {
           Adicionar administradores, consultar livros e ver a biblioteca.
         </span>
       </div>
+
+      <div className="py-12">
+        <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
+          <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
+            <div className="p-6 text-gray-900 dark:text-gray-100">
+              <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+                Adicionar Categoria de livros
+              </h2>
+              <CategoryPage />
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div className="py-12">
         <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
           <div className="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
@@ -36,8 +53,7 @@ export default function Dashboard({ auth }) {
               <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 Adicionar livro
               </h2>
-              Aqui você pode adicionar novos livros no sistema clicando no botão
-              abaixo.
+              <BooksPage />
             </div>
           </div>
         </div>
@@ -50,9 +66,7 @@ export default function Dashboard({ auth }) {
               <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 Adicionar Administrador
               </h2>
-              Este é o quadro de administrador, aqui você pode: Adicionar
-              livros, Adicionar administradores, consultar livros e ver a
-              biblioteca
+              <AdminPage />
             </div>
           </div>
         </div>
@@ -66,9 +80,8 @@ export default function Dashboard({ auth }) {
               <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
                 Biblioteca
               </h2>
-              Este é o quadro de administrador, aqui você pode: Adicionar
-              livros, Adicionar administradores, consultar livros e ver a
-              biblioteca
+              {/* tabela */}
+              <LibraryTable></LibraryTable>
             </div>
           </div>
         </div>
