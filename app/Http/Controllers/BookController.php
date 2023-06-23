@@ -21,12 +21,15 @@ class BookController extends Controller
 
     public function cadastroLivros()
     {
-        return Inertia::render('CadastroLivros');
+        $categories = \App\Models\Category::all();
+        return Inertia::render('CadastroLivros', [
+            'categories' => $categories,
+        ]);
     }
 
     public function store(Request $request)
     {
-        // dd($request->all());
+        dd($request->all());
 
         $request->validate([
             'title' => 'required',
@@ -35,11 +38,9 @@ class BookController extends Controller
             'pageCount' => '',
             'imageLink' => '',
             'selfLink' => '',
-            'category_id' => '',
+            'category_id' => 'required',
             'available' => '',
         ]);
-
-        // dd($request);
 
         Book::create($request->all());
 
