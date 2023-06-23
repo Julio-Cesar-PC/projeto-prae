@@ -19,6 +19,13 @@ class BookController extends Controller
         ]);
     }
 
+    public function getAllBooks()
+    {
+        $livros = Book::all();
+        $livros->load('category');
+        return $livros;
+    }
+
     public function cadastroLivros()
     {
         $categories = Category::all();
