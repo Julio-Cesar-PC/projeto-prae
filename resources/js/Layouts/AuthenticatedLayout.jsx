@@ -25,6 +25,46 @@ export default function Authenticated({ user, header, children }) {
                   Dashboard
                 </NavLink>
               </div>
+
+              <div className="dropdown">
+                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                  <label
+                    tabIndex={0}
+                    className="btn-ghost rounded-btn text-white mt-5"
+                  >
+                    Cadastros
+                  </label>
+                  <ul
+                    tabIndex={0}
+                    className="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4"
+                  >
+                    <NavLink
+                      href={route('dashboard')}
+                      // active={route().current('dashboard')}
+                    >
+                      <li>
+                        <a>Cadastrar Categoria</a>
+                      </li>
+                    </NavLink>
+                    <NavLink
+                      href={route('dashboard')}
+                      // active={route().current('dashboard')}
+                    >
+                      <li>
+                        <a>Cadastrar Livro</a>
+                      </li>
+                    </NavLink>
+                    <NavLink
+                      href={route('dashboard')}
+                      // active={route().current('dashboard')}
+                    >
+                      <li>
+                        <a>Cadastrar Admin</a>
+                      </li>
+                    </NavLink>
+                  </ul>
+                </div>
+              </div>
             </div>
 
             <div className="hidden sm:flex sm:items-center sm:ml-6">
