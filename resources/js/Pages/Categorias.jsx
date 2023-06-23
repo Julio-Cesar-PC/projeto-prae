@@ -2,7 +2,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import TableLivros from '@/Components/TableLivros';
 
-export default function Livros({ auth, livros }) {
+export default function Categorias({ auth, livros }) {
     return (
         <AuthenticatedLayout
             user={auth.user}
