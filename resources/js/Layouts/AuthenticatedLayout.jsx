@@ -17,53 +17,27 @@ export default function Authenticated({ user, header, children }) {
             <div className="flex">
               {/* <div className="shrink-0 flex items-center"></div> */}
 
-              <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+              <div className="hidden space-x-8 flex items-center sm:-my-px sm:ml-10 sm:flex">
                 <NavLink
                   href={route('dashboard')}
                   active={route().current('dashboard')}
                 >
                   Dashboard
                 </NavLink>
-              </div>
 
-              <div className="dropdown">
-                <div className="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                  <label
-                    tabIndex={0}
-                    className="btn-ghost rounded-btn text-white mt-5"
-                  >
-                    Cadastros
-                  </label>
-                  <ul
-                    tabIndex={0}
-                    className="menu dropdown-content z-[1] p-2 shadow bg-base-100 rounded-box w-52 mt-4"
-                  >
-                    <NavLink
-                      href={route('dashboard')}
-                      // active={route().current('dashboard')}
-                    >
-                      <li>
-                        <a>Cadastrar Categoria</a>
-                      </li>
-                    </NavLink>
-                    <NavLink
-                      href={route('dashboard')}
-                      // active={route().current('dashboard')}
-                    >
-                      <li>
-                        <a>Cadastrar Livro</a>
-                      </li>
-                    </NavLink>
-                    <NavLink
-                      href={route('dashboard')}
-                      // active={route().current('dashboard')}
-                    >
-                      <li>
-                        <a>Cadastrar Admin</a>
-                      </li>
-                    </NavLink>
+                <details className="dropdown inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none">
+                  <summary className="btn btn-ghost">Cadastros</summary>
+                  <ul className="shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                    <li>
+                      <NavLink
+                        href={route('livros')}
+                        active={route().current('livros')}
+                      >
+                        Livros
+                      </NavLink>
+                    </li>
                   </ul>
-                </div>
+                </details>
               </div>
             </div>
 
