@@ -3,8 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Laravel\Socialite\Facades\Socialite;
 use App\Models\Book;
+use App\Models\Category;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -21,7 +21,7 @@ class BookController extends Controller
 
     public function cadastroLivros()
     {
-        $categories = \App\Models\Category::all();
+        $categories = Category::all();
         return Inertia::render('CadastroLivros', [
             'categories' => $categories,
         ]);

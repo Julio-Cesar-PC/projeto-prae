@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -34,9 +35,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/livros', [BookController::class, 'livros'])->name('livros');
     Route::get('/livro/cadastro', [BookController::class, 'cadastroLivros'])->name('livros.cadastro');
     Route::post('/livro/create', [BookController::class, 'store'])->name('livros.store');
-    Route::get('/categorias', function () {
-        return Inertia::render('Categorias');
-    })->name('categorias');
+
+    Route::get('/categorias', [CategoryController::class, 'index'])->name('categorias.index');
+    Route::get('/categoria/cadastro', [CategoryController::class, 'create'])->name('categorias.cadastro');
+    Route::post('/categoria/create', [CategoryController::class, 'store'])->name('categorias.store');
+    Route::get('/categoria/{category}/edit', [CategoryController::class, 'edit'])->name('categorias.edit');
+    Route::patch('/categoria/{category}/update', [CategoryController::class, 'update'])->name('categorias.update');
+    Route::delete('/categoria/destroy/{category_id}', [CategoryController::class, 'destroy'])->name('categorias.destroy');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {

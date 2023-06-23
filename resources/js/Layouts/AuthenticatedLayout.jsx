@@ -18,12 +18,6 @@ export default function Authenticated({ user, header, children }) {
               {/* <div className="shrink-0 flex items-center"></div> */}
 
               <div className="hidden space-x-8 flex items-center sm:-my-px sm:ml-10 sm:flex">
-                <NavLink
-                  href={route('dashboard')}
-                  active={route().current('dashboard')}
-                >
-                  Dashboard
-                </NavLink>
                 <div className="hidden space-x-8 flex items-center sm:-my-px sm:ml-10 sm:flex">
                   <NavLink
                     href={route('dashboard')}
@@ -45,8 +39,8 @@ export default function Authenticated({ user, header, children }) {
                       </li>
                       <li>
                         <NavLink
-                          href={route('categorias')}
-                          active={route().current('categorias')}
+                          href={route('categorias.index')}
+                          active={route().current('categorias.index')}
                         >
                           Categorias
                         </NavLink>
