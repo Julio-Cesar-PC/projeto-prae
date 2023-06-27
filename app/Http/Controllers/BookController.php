@@ -12,17 +12,25 @@ class BookController extends Controller
 {
     public function livros()
     {
-        $livros = Book::all();
+        sleep(2);
+        $livros = Book::paginate(10);
         $livros->load('category');
-        return Inertia::render('Livros', [
+        return Inertia::render('Books/Index', [
             'livros' => $livros,
         ]);
+    }
+
+    public function getAllBooks()
+    {
+        $livros = Book::all();
+        $livros->load('category');
+        return $livros;
     }
 
     public function cadastroLivros()
     {
         $categories = Category::all();
-        return Inertia::render('CadastroLivros', [
+        return Inertia::render('Books/Create', [
             'categories' => $categories,
         ]);
     }

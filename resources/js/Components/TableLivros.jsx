@@ -1,6 +1,11 @@
 import { FaPlus } from 'react-icons/fa'
+import Pagination from '@/Components/Pagination'
 
 export default function TableLivros({ livros }) {
+    console.log(livros)
+    // livros.data.map((livro) => (
+    //     console.log(livro.id)
+    // ))
     return (
         <div className="py-12">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -18,20 +23,30 @@ export default function TableLivros({ livros }) {
                             </tr>
                         </thead>
                         <tbody className="">
-                            {livros.map((livro) => (
+                            {livros.data.map((livro) => (
                                 <tr className='hover' key={livro.id}>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 "> {livro.id} </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 "> {livro.title} </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 "> {livro.author} </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 "> {livro.publisher} </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 "> <span className="badge badge-primary">{livro.category.nome}</span> </td>
-                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 ">
-                                        <a href="#" className="text-indigo-600 hover:text-indigo-900">Editar</a>
+                                    <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex gap-2">
+                                    <label  htmlFor={'modalEditar-'+livro.id}
+                                                className="btn btn-primary btn-xs" >Editar
+                                        </label >
+                                        <input type="checkbox" id={'modalEditar-'+livro.id} className="modal-toggle" />
+
+
+                                        <label  htmlFor={'modalExcluir-'+livro.id}
+                                                className="btn btn-error btn-xs" >Excluir
+                                        </label >
+                                        <input type="checkbox" id={'modalExcluir-'+livro.id} className="modal-toggle" />
                                     </td>
                                 </tr>
                             ))}
                         </tbody>
                     </table>
+                    <Pagination links={livros.links} />
                 </div>
             </div>
         </div>

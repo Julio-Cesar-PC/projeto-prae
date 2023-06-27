@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashboardController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,19 +23,16 @@ Route::get('/', function () {
     return Inertia::render('Home');
 });
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-
+Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/livros', [BookController::class, 'livros'])->name('livros');
+    Route::get('/livros', [BookController::class, 'livros'])->name('livros.index');
     Route::get('/livro/cadastro', [BookController::class, 'cadastroLivros'])->name('livros.cadastro');
     Route::post('/livro/create', [BookController::class, 'store'])->name('livros.store');
+    Route::get('/livro/getAllBooks', [BookController::class, 'getAllBooks'])->name('livros.getAllBooks');
 
     Route::get('/categorias', [CategoryController::class, 'index'])->name('categorias.index');
     Route::get('/categoria/cadastro', [CategoryController::class, 'create'])->name('categorias.cadastro');

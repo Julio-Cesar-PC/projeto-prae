@@ -17,28 +17,48 @@ export default function Authenticated({ user, header, children }) {
             <div className="flex">
               {/* <div className="shrink-0 flex items-center"></div> */}
 
-                <div className="hidden space-x-8 flex items-center sm:-my-px sm:ml-10 sm:flex">
-                    <div className="hidden space-x-8 flex items-center sm:-my-px sm:ml-10 sm:flex">
-                        <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                            Dashboard
-                        </NavLink>
+                <div className="space-x-8 flex items-center sm:-my-px sm:ml-10 sm:flex">
+                    <NavLink href={route('dashboard')} active={route().current('dashboard')}>
+                        Dashboard
+                    </NavLink>
 
-                        <details className="dropdown inline-flex items-center px-1 pt-1 text-sm font-medium leading-5 transition duration-150 ease-in-out focus:outline-none">
-                            <summary className='btn btn-ghost'>Cadastros</summary>
-                            <ul className="shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52 text-black">
-                                <li>
-                                    <NavLink href={route('livros')} active={route().current('livros')}>
-                                        Livros
-                                    </NavLink>
-                                </li>
-                                <li>
-                                    <NavLink href={route('categorias.index')} active={route().current('categorias.index')}>
-                                        Categorias
-                                    </NavLink>
-                                </li>
-                            </ul>
-                        </details>
-                    </div>
+                    <Dropdown>
+                        <Dropdown.Trigger>
+                            <span className="inline-flex rounded-md">
+                                <button
+                                    type="button"
+                                    className="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-gray-500 bg-white  hover:text-gray-700 focus:outline-none transition ease-in-out duration-150"
+                                >
+                                    Cadastros
+
+                                    <svg
+                                    className="ml-2 -mr-0.5 h-4 w-4"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    viewBox="0 0 20 20"
+                                    fill="currentColor"
+                                    >
+                                    <path
+                                        fillRule="evenodd"
+                                        d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                                        clipRule="evenodd"
+                                    />
+                                    </svg>
+                                </button>
+                            </span>
+                        </Dropdown.Trigger>
+                        <Dropdown.Content>
+                            <Dropdown.Link href={route('livros.index')} active={route().current('livros.index')}>
+                                <NavLink href={route('livros.index')} active={route().current('livros.index')}>
+                                    Livros
+                                </NavLink>
+                            </Dropdown.Link>
+                            <Dropdown.Link href={route('categorias.index')}>
+                                <NavLink href={route('categorias.index')} active={route().current('categorias.index')}>
+                                    Categorias
+                                </NavLink>
+                            </Dropdown.Link>
+                        </Dropdown.Content>
+                    </Dropdown>
                 </div>
             </div>
             <div className="hidden sm:flex sm:items-center sm:ml-6">
