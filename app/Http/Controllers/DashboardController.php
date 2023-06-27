@@ -13,7 +13,7 @@ class DashboardController extends Controller
 
     public function dashboard()
     {
-        $livros = Book::all();
+        $livros = Book::paginate(10);
         $livros->load('category');
         return Inertia::render('Dashboard', [
             'livros' => $livros,
