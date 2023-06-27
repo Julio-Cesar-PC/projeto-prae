@@ -3,6 +3,8 @@ import { Head, useForm } from '@inertiajs/react';
 import TextInput from '@/Components/TextInput';
 import InputLabel from '@/Components/InputLabel';
 import InputError from '@/Components/InputError';
+import { FaSearch } from 'react-icons/fa'
+
 
 export default function CadastroLivros({ auth, categories }) {
     const { data, setData, post, errors } = useForm({
@@ -20,6 +22,8 @@ export default function CadastroLivros({ auth, categories }) {
         post(route('livros.store'));
     };
 
+
+
     return (
         <AuthenticatedLayout
             user={auth.user}
@@ -30,7 +34,10 @@ export default function CadastroLivros({ auth, categories }) {
             <div className="py-12">
                 <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                        <div className="p-6 text-gray-900 ">Cadastro de Livros</div>
+                        <div className='flex justify-between items-center mx-6 my-6'>
+                            <div className="p-6 text-gray-900 ">Cadastro de Livros</div>
+                            <button className="btn btn-primary"><FaSearch /> Procurar Livros</button>
+                        </div>
 
                         <div className="p-6 bg-white border-b border-gray-200 ">
                             <form onSubmit={submit}>
