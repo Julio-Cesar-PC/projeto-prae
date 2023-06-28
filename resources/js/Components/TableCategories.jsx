@@ -43,7 +43,7 @@ export default function TableCategorias({ categorias, error }) {
                   {' '}
                   Nome{' '}
                 </th>
-                <th
+                {/* <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-900  uppercase tracking-wider"
                 >
@@ -56,7 +56,7 @@ export default function TableCategorias({ categorias, error }) {
                 >
                   {' '}
                   Atualizado{' '}
-                </th>
+                </th> */}
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-900  uppercase tracking-wider"
@@ -77,14 +77,14 @@ export default function TableCategorias({ categorias, error }) {
                     {' '}
                     {categoria.nome}{' '}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 ">
+                  {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 ">
                     {' '}
                     {categoria.created_at}{' '}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 ">
                     {' '}
                     {categoria.updated_at}{' '}
-                  </td>
+                  </td> */}
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex gap-2">
                     <Link
                       href={route('categorias.edit', categoria.id)}

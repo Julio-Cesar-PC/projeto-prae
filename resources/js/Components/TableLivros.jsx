@@ -3,6 +3,14 @@ import { Link, useForm } from '@inertiajs/react'
 import Pagination from '@/Components/Pagination'
 
 export default function TableLivros({ livros }) {
+  const {
+    data,
+    setData,
+    processing,
+    errors,
+    reset,
+    delete: destroy,
+  } = useForm({})
   // Cria uma nova matriz de objetos `link` com os valores de `link.label` atualizados
   const updatedLinks = livros.links.map((link) => {
     // cria uma cópia do objeto link
@@ -26,6 +34,15 @@ export default function TableLivros({ livros }) {
 
   // Cria um novo objeto `livros` com a propriedade `links` atualizada para usar a matriz `updatedLinks`
   const updatedLivros = { ...livros, links: updatedLinks }
+
+  function excluirLivro(livro) {
+    destroy(route('livros.destroy', livro.id), {
+      preserveScroll: true,
+      onError: () => console.log('Erro ao excluir livro'),
+    })
+  }
+
+  function editarLivro(livro) {}
 
   return (
     <div className="py-12 w-full">
@@ -108,17 +125,12 @@ export default function TableLivros({ livros }) {
                     </span>{' '}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex gap-2">
-                    <label
-                      htmlFor={'modalEditar-' + livro.id}
+                    <Link
+                      href={route('livros.edit', { book_id: livro.id })}
                       className="btn btn-primary btn-xs"
                     >
                       Editar
-                    </label>
-                    <input
-                      type="checkbox"
-                      id={'modalEditar-' + livro.id}
-                      className="modal-toggle"
-                    />
+                    </Link>
 
                     <label
                       htmlFor={'modalExcluir-' + livro.id}
@@ -131,6 +143,39 @@ export default function TableLivros({ livros }) {
                       id={'modalExcluir-' + livro.id}
                       className="modal-toggle"
                     />
+
+                    <div className="modal">
+                      <form method="dialog" className="modal-box">
+                        <h3 className="font-bold text-lg">
+                          Excluir {livro.title}
+                        </h3>
+                        <p className="py-4">
+                          Deseja excluir o livro "{livro.title}"
+                        </p>
+                        <div className="modal-action">
+                          <label
+                            htmlFor={'modalExcluir-' + livro.id}
+                            className="btn"
+                          >
+                            Não
+                          </label>
+                          <button
+                            className="btn btn-primary"
+                            onClick={() => {
+                              excluirLivro(livro)
+                            }}
+                          >
+                            Sim
+                          </button>
+                        </div>
+                      </form>
+                      <label
+                        className="modal-backdrop"
+                        htmlFor={'modalExcluir-' + livro.id}
+                      >
+                        Close
+                      </label>
+                    </div>
                   </td>
                 </tr>
               ))}
