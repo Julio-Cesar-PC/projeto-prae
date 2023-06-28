@@ -46,11 +46,9 @@ export default function DeleteUserForm({ className = '' }) {
   return (
     <section className={`space-y-6 ${className}`}>
       <header>
-        <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">
-          Deletar Conta
-        </h2>
+        <h2 className="text-lg font-medium text-{#212922}">Deletar Conta</h2>
 
-        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        <p className="mt-1 text-sm text-{#212922}">
           Uma vez que sua conta for excluída, todos os seus recursos e dados
           serão excluídos permanentemente. Antes de excluir sua conta, faça o
           download de quaisquer dados ou informações que deseja manter.
@@ -60,23 +58,19 @@ export default function DeleteUserForm({ className = '' }) {
       <DangerButton onClick={confirmUserDeletion}>Deletar Conta</DangerButton>
 
       <Modal show={confirmingUserDeletion} onClose={closeModal}>
-        <form onSubmit={deleteUser} className="p-6">
-          <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+        <form onSubmit={deleteUser} className="p-6 bg-white">
+          <h2 className="text-lg font-medium text-{#212922}">
             Você tem certeza de que deseja excluir sua conta?
           </h2>
 
-          <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+          <p className="mt-1 text-sm text-{#212922}">
             Uma vez que sua conta for excluída, todos os seus recursos e dados
             serão excluídos permanentemente. Por favor, insira sua senha para
             confirmar que deseja excluir permanentemente sua conta.
           </p>
 
           <div className="mt-6">
-            <InputLabel
-              htmlFor="password"
-              value="Password"
-              className="sr-only"
-            />
+            <InputLabel htmlFor="password" value="Senha" className="sr-only" />
 
             <TextInput
               id="password"
@@ -85,9 +79,9 @@ export default function DeleteUserForm({ className = '' }) {
               ref={passwordInput}
               value={data.password}
               onChange={(e) => setData('password', e.target.value)}
-              className="mt-1 block w-3/4"
+              className="mt-1 block w-3/4 text-{#212922}"
               isFocused
-              placeholder="Password"
+              placeholder="Batatinha123"
             />
 
             <InputError message={errors.password} className="mt-2" />
