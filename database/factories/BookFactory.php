@@ -23,7 +23,7 @@ class BookFactory extends Factory
             'pageCount' => fake()->numberBetween(1, 1000),
             'imageLink' => fake()->imageUrl(),
             'selfLink' => fake()->url(),
-            'category_id' => 1,
+            'category_id' => fake()->numberBetween(1, 4),
             'available' => fake()->boolean(),
             'created_at' => fake()->dateTime(),
             'updated_at' => fake()->dateTime(),
