@@ -50,6 +50,8 @@ export default function Pagination({ links }) {
 
                                 href={link.url}
 
+                                preserveScroll={true}
+
                             >{link.label}</Link>)
 
                     ))}

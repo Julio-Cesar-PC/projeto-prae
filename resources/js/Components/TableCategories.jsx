@@ -1,13 +1,10 @@
 import { FaPlus } from 'react-icons/fa'
 import { useForm } from '@inertiajs/react'
 
-export default function TableCategorias({ categorias }) {
-    const { data, setData, processing, errors, reset, delete: destroy, } = useForm({
-        nome: '',
-    });
+export default function TableCategorias({ categorias, error }) {
+    const { data, setData, processing, errors, reset, delete: destroy, } = useForm({});
 
     function excluirCategoria(categoria) {
-        console.log('Excluindo ' + categoria.nome)
         destroy(route('categorias.destroy', categoria.id), {
             preserveScroll: true,
             onError: () => console.log('Erro ao excluir categoria')

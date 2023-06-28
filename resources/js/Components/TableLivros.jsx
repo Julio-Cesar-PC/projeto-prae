@@ -1,17 +1,23 @@
 import { FaPlus } from 'react-icons/fa'
+import { useForm } from '@inertiajs/react'
 import Pagination from '@/Components/Pagination'
 
 export default function TableLivros({ livros }) {
-    console.log(livros)
-    // livros.data.map((livro) => (
-    //     console.log(livro.id)
-    // ))
+    const { data, setData, processing, errors, reset, delete: destroy, } = useForm({});
+
+    function excluirLivro(livro) {
+        destroy(route('livros.destroy', livro.id), {
+            preserveScroll: true,
+            onError: () => console.log('Erro ao excluir livro')
+        })
+    }
+
     return (
         <div className="py-12">
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <a href='livro/cadastro' className="btn btn-primary mb-5"><FaPlus/>Novo Livro</a>
-                    <table className="table min-w-full">
+                    <table className="table table-xs table-fixed min-w-full">
                         <thead className="bg-gray-50">
                             <tr>
                                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-900  uppercase tracking-wider"> # </th>
@@ -41,6 +47,18 @@ export default function TableLivros({ livros }) {
                                                 className="btn btn-error btn-xs" >Excluir
                                         </label >
                                         <input type="checkbox" id={'modalExcluir-'+livro.id} className="modal-toggle" />
+
+                                        <div className="modal">
+                                            <form method="dialog" className="modal-box">
+                                                <h3 className="font-bold text-lg">Excluir {livro.title}</h3>
+                                                <p className="py-4">Deseja excluir o livro "{livro.title}"</p>
+                                                <div className="modal-action">
+                                                    <label htmlFor={'modalExcluir-'+livro.id} className="btn">Não</label>
+                                                    <button className="btn btn-primary" onClick={() => {excluirLivro(livro)}}>Sim</button>
+                                                </div>
+                                            </form>
+                                            <label className="modal-backdrop" htmlFor={'modalExcluir-'+livro.id}>Close</label>
+                                        </div>
                                     </td>
                                 </tr>
                             ))}
