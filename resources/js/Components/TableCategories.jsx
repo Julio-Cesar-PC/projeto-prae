@@ -104,7 +104,6 @@ export default function TableCategorias({ categorias, error }) {
                       id={'modalExcluir-' + categoria.id}
                       className="modal-toggle"
                     />
-
                     <div className="modal">
                       <form method="dialog" className="modal-box">
                         <h3 className="font-bold text-lg">
