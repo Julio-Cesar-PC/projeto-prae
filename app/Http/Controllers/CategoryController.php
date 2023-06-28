@@ -34,14 +34,14 @@ class CategoryController extends Controller
         return redirect()->route('categorias.index');
     }
 
-    public function edit(Category $category)
+    public function edit($id)
     {
         return Inertia::render('Categories/Edit', [
-            'category' => $category,
+            'categoria' => Category::find($id),
         ]);
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
         // dd($request->all());
 
@@ -49,9 +49,10 @@ class CategoryController extends Controller
             'nome' => 'required',
         ]);
 
+        $category = Category::find($id);
         $category->update($request->all());
 
-        return redirect()->route('categories.index');
+        return redirect()->route('categorias.index');
     }
 
     public function destroy($category_id)
@@ -62,8 +63,8 @@ class CategoryController extends Controller
             return redirect()->route('categorias.index')->with('error', 'Não é possível excluir uma categoria que possui livros cadastrados.');
         } else {
             $category->delete();
+            return redirect()->route('categorias.index');
         }
 
-        return redirect()->route('categorias.index');
     }
 }

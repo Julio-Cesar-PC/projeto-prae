@@ -12,7 +12,6 @@ class BookController extends Controller
 {
     public function livros()
     {
-        sleep(2);
         $livros = Book::paginate(10);
         $livros->load('category');
         return Inertia::render('Books/Index', [
@@ -52,8 +51,44 @@ class BookController extends Controller
 
         Book::create($request->all());
 
-        return redirect()->route('livros');
+        return redirect()->route('livros.index');
     }
 
+    public function edit($id)
+    {
+        // dd($id);
+        return Inertia::render('Books/Edit', [
+            'livro' => Book::find($id),
+            'categories' => Category::all(),
+        ]);
+    }
 
+    public function update(Request $request, $id)
+    {
+        // dd($request->all());
+
+        $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'publisher' => 'required',
+            'pageCount' => '',
+            'imageLink' => '',
+            'selfLink' => '',
+            'category_id' => 'required',
+            'available' => '',
+        ]);
+
+        $livro = Book::find($id);
+        $livro->update($request->all());
+
+        return redirect()->route('livros.index');
+    }
+
+    public function destroy($id)
+    {
+        $livro = Book::find($id);
+        $livro->delete();
+
+        return redirect()->route('livros.index');
+    }
 }

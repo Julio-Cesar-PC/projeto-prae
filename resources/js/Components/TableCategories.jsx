@@ -1,7 +1,7 @@
 import { FaPlus } from 'react-icons/fa'
-import { useForm } from '@inertiajs/react'
+import { Link, useForm } from '@inertiajs/react'
 
-export default function TableCategorias({ categorias }) {
+export default function TableCategorias({ categorias, error }) {
   const {
     data,
     setData,
@@ -9,12 +9,9 @@ export default function TableCategorias({ categorias }) {
     errors,
     reset,
     delete: destroy,
-  } = useForm({
-    nome: '',
-  })
+  } = useForm({})
 
   function excluirCategoria(categoria) {
-    console.log('Excluindo ' + categoria.nome)
     destroy(route('categorias.destroy', categoria.id), {
       preserveScroll: true,
       onError: () => console.log('Erro ao excluir categoria'),
@@ -46,8 +43,20 @@ export default function TableCategorias({ categorias }) {
                   {' '}
                   Nome{' '}
                 </th>
-                {/* <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-900  uppercase tracking-wider"> Criação </th> */}
-                {/* <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-900  uppercase tracking-wider"> Atualizado </th> */}
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-900  uppercase tracking-wider"
+                >
+                  {' '}
+                  Criação{' '}
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-900  uppercase tracking-wider"
+                >
+                  {' '}
+                  Atualizado{' '}
+                </th>
                 <th
                   scope="col"
                   className="px-6 py-3 text-left text-xs font-medium text-gray-900  uppercase tracking-wider"
@@ -68,26 +77,21 @@ export default function TableCategorias({ categorias }) {
                     {' '}
                     {categoria.nome}{' '}
                   </td>
-                  {/* <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 ">
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 ">
                     {' '}
                     {categoria.created_at}{' '}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 ">
                     {' '}
                     {categoria.updated_at}{' '}
-                  </td> */}
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex gap-2">
-                    <label
-                      htmlFor={'modalEditar-' + categoria.id}
+                    <Link
+                      href={route('categorias.edit', categoria.id)}
                       className="btn btn-primary btn-xs"
                     >
                       Editar
-                    </label>
-                    <input
-                      type="checkbox"
-                      id={'modalEditar-' + categoria.id}
-                      className="modal-toggle"
-                    />
+                    </Link>
 
                     <label
                       htmlFor={'modalExcluir-' + categoria.id}

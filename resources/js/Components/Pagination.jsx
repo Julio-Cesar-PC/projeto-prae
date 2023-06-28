@@ -20,7 +20,11 @@ export default function Pagination({ links }) {
                 {link.label.replace(/&raquo;|&laquo;/g, '')}
               </div>
             ) : (
-              <Link className={getClassName(link.active)} href={link.url}>
+              <Link
+                className={getClassName(link.active)}
+                href={link.url}
+                preserveScroll={true}
+              >
                 {link.label.replace(/&raquo;|&laquo;/g, '')}
               </Link>
             )

@@ -1,4 +1,5 @@
 import { FaPlus } from 'react-icons/fa'
+import { Link, useForm } from '@inertiajs/react'
 import Pagination from '@/Components/Pagination'
 
 export default function TableLivros({ livros }) {

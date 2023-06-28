@@ -6,20 +6,20 @@ import InputError from '@/Components/InputError';
 import { FaSearch } from 'react-icons/fa'
 
 
-export default function CadastroLivros({ auth, categories }) {
-    const { data, setData, post, errors } = useForm({
-        title: '',
-        author: '',
-        publisher: '',
-        pageCount: '',
-        category_id: '',
-        available: true,
+export default function CadastroLivros({ auth, categories, livro }) {
+    const { data, setData, patch, errors } = useForm({
+        title: livro.title,
+        author: livro.author,
+        publisher: livro.publisher,
+        pageCount: livro.pageCount,
+        category_id: livro.category_id,
+        available: livro.available,
     });
 
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('livros.store'));
+        patch(route('livros.update', livro.id));
     };
 
 
@@ -109,7 +109,7 @@ export default function CadastroLivros({ auth, categories }) {
                                     </div>
                                 </div>
 
-                                <button type="submit" className="btn btn-primary">Cadastrar</button>
+                                <button type="submit" className="btn btn-primary">Salvar</button>
                             </form>
                         </div>
                     </div>

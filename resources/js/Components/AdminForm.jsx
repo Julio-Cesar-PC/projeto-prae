@@ -40,7 +40,7 @@ class AdminForm extends React.Component {
     return (
       <form onSubmit={this.handleSubmit}>
         <label>
-          <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+          <h2 className="font-semibold text-xl text-gray-800 leading-tight">
             Nome:
           </h2>
           <input
@@ -54,7 +54,7 @@ class AdminForm extends React.Component {
         </label>
         <br />
         <label>
-          <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+          <h2 className="font-semibold text-xl text-gray-800 leading-tight">
             Email:
           </h2>
           <input
@@ -68,7 +68,7 @@ class AdminForm extends React.Component {
         </label>
         <br />
         <label>
-          <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+          <h2 className="font-semibold text-xl text-gray-800 leading-tight">
             Senha:
           </h2>
           <input
@@ -81,7 +81,7 @@ class AdminForm extends React.Component {
           />
         </label>
         <label>
-          <h2 className="font-semibold text-xl text-gray-800 dark:text-gray-200 leading-tight">
+          <h2 className="font-semibold text-xl text-gray-800 leading-tight">
             Confirmação de senha:
           </h2>
           <input
