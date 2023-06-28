@@ -2,11 +2,10 @@ import BooksPage from '@/Components/BooksPage'
 import TableLivros from '@/Components/TableLivros'
 import AdminPage from '@/Components/AdminPage'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import { Head } from '@inertiajs/react'
+import { Head, Link } from '@inertiajs/react'
 import CategoryPage from '@/Components/CategoryPage'
 
 export default function Dashboard({ auth, livros }) {
-    console.log(livros)
   return (
     <AuthenticatedLayout
       user={auth.user}
@@ -31,6 +30,7 @@ export default function Dashboard({ auth, livros }) {
         <span>
           Este é o quadro de administrador, aqui você pode: Adicionar livros,
           Adicionar administradores, consultar livros e ver a biblioteca.
+          <Link href="/livros"> Voltar para o quadro de usuário</Link>
         </span>
       </div>
 

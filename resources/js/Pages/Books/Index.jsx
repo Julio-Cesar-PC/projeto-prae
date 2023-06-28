@@ -1,8 +1,11 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head } from '@inertiajs/react';
 import TableLivros from '@/Components/TableLivros';
+import axios from 'axios';
 
 export default function Livros({ auth, livros }) {
+
+
     return (
         <AuthenticatedLayout
             user={auth.user}

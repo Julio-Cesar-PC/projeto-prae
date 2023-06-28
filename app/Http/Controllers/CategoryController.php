@@ -62,8 +62,8 @@ class CategoryController extends Controller
             return redirect()->route('categorias.index')->with('error', 'Não é possível excluir uma categoria que possui livros cadastrados.');
         } else {
             $category->delete();
+            return redirect()->route('categorias.index');
         }
 
-        return redirect()->route('categorias.index');
     }
 }

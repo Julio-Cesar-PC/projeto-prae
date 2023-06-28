@@ -12,9 +12,9 @@ class BookController extends Controller
 {
     public function livros()
     {
-        $livros = Book::all();
+        $livros = Book::paginate(10);
         $livros->load('category');
-        return Inertia::render('Livros', [
+        return Inertia::render('Books/Index', [
             'livros' => $livros,
         ]);
     }
@@ -29,7 +29,7 @@ class BookController extends Controller
     public function cadastroLivros()
     {
         $categories = Category::all();
-        return Inertia::render('CadastroLivros', [
+        return Inertia::render('Books/Create', [
             'categories' => $categories,
         ]);
     }
@@ -51,8 +51,32 @@ class BookController extends Controller
 
         Book::create($request->all());
 
-        return redirect()->route('livros');
+        return redirect()->route('livros.index');
     }
 
+    public function edit($id)
+    {
+        $livro = Book::find($id);
+        $categories = Category::all();
+        return Inertia::render('Books/Edit', [
+            'livro' => $livro,
+            'categories' => $categories,
+        ]);
+    }
 
+    public function update(Request $request, $id)
+    {
+        $livro = Book::find($id);
+        $livro->update($request->all());
+
+        return redirect()->route('livros.index');
+    }
+
+    public function destroy($id)
+    {
+        $livro = Book::find($id);
+        $livro->delete();
+
+        return redirect()->route('livros.index');
+    }
 }
