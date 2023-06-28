@@ -4,15 +4,15 @@ import TextInput from '@/Components/TextInput';
 import InputLabel from '@/Components/InputLabel';
 import InputError from '@/Components/InputError';
 
-export default function CadastroLivros({ auth }) {
-    const { data, setData, post, errors } = useForm({
-        nome: '',
+export default function CadastroLivros({ auth, categoria }) {
+    const { data, setData, patch, errors } = useForm({
+        nome: categoria.nome,
     });
 
     const submit = (e) => {
         e.preventDefault();
 
-        post(route('categorias.store'));
+        patch(route('categorias.update', categoria.id));
     };
 
     return (
@@ -41,7 +41,7 @@ export default function CadastroLivros({ auth }) {
                                     </div>
                                 </div>
 
-                                <button type="submit" className="btn btn-primary">Cadastrar</button>
+                                <button type="submit" className="btn btn-primary">Salvar</button>
                             </form>
                         </div>
                     </div>

@@ -102,7 +102,7 @@ export default function Register() {
         <div className="flex items-center justify-between mt-4">
           <Link
             href={route('login')}
-            className="underline text-sm  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+            className="underline text-sm  rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Já possui cadastro?
           </Link>

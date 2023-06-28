@@ -27,11 +27,11 @@ export default function UpdateProfileInformation({
   return (
     <section className={className}>
       <header>
-        <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+        <h2 className="text-lg font-medium text-gray-900 ">
           Informações do Perfil
         </h2>
 
-        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        <p className="mt-1 text-sm text-gray-600">
           Atualize as informações do perfil e o endereço de e-mail da sua conta
         </p>
       </header>
@@ -71,20 +71,20 @@ export default function UpdateProfileInformation({
 
         {mustVerifyEmail && user.email_verified_at === null && (
           <div>
-            <p className="text-sm mt-2 text-gray-800 dark:text-gray-200">
+            <p className="text-sm mt-2 text-gray-800">
               Seu endereço de e-mail não foi verificado.
               <Link
                 href={route('verification.send')}
                 method="post"
                 as="button"
-                className="underline text-sm text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-100 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
+                className="underline text-sm text-gray-600 hover:text-gray-900rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
                 Clique aqui para reenviar o e-mail de verificação.
               </Link>
             </p>
 
             {status === 'verification-link-sent' && (
-              <div className="mt-2 font-medium text-sm text-green-600 dark:text-green-400">
+              <div className="mt-2 font-medium text-sm text-green-600">
                 Um novo link de verificação foi enviado para o seu endereço de
                 e-mail.
               </div>
@@ -101,7 +101,7 @@ export default function UpdateProfileInformation({
             leaveTo="opacity-0"
             className="transition ease-in-out"
           >
-            <p className="text-sm text-gray-600 dark:text-gray-400">Salvo.</p>
+            <p className="text-sm text-gray-600">Salvo.</p>
           </Transition>
         </div>
       </form>
