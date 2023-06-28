@@ -93,7 +93,7 @@ export default function CadastroLivros({ auth, categories }) {
                                         <select onChange={(e) =>setData('category_id', e.target.value)}
                                                 value={data.category_id}
                                                 className="select w-full max-w-xs text-black">
-                                            <option>Selecione uma categoria</option>
+                                            <option disabled>Selecione uma categoria</option>
                                             {categories.map((category) => (
                                                 <option key={category.id} value={category.id}>{category.nome}</option>
                                             ))}
