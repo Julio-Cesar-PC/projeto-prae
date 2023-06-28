@@ -40,11 +40,9 @@ export default function UpdatePasswordForm({ className = '' }) {
   return (
     <section className={className}>
       <header>
-        <h2 className="text-lg font-medium text-gray-900">
-          Atualizar Senha
-        </h2>
+        <h2 className="text-lg font-medium text-{#212922}">Atualizar Senha</h2>
 
-        <p className="mt-1 text-sm text-gray-600">
+        <p className="mt-1 text-sm text-{#212922}">
           Certifique-se de que sua conta esteja usando uma senha longa e
           aleatória para permanecer segura.{' '}
         </p>
@@ -52,7 +50,7 @@ export default function UpdatePasswordForm({ className = '' }) {
 
       <form onSubmit={updatePassword} className="mt-6 space-y-6">
         <div>
-          <InputLabel htmlFor="current_password" value="Current Password" />
+          <InputLabel htmlFor="current_password" value="Senha atual" />
 
           <TextInput
             id="current_password"
@@ -60,7 +58,7 @@ export default function UpdatePasswordForm({ className = '' }) {
             value={data.current_password}
             onChange={(e) => setData('current_password', e.target.value)}
             type="password"
-            className="mt-1 block w-full"
+            className="mt-1 block w-full text-{#212922}"
             autoComplete="current-password"
           />
 
@@ -68,7 +66,7 @@ export default function UpdatePasswordForm({ className = '' }) {
         </div>
 
         <div>
-          <InputLabel htmlFor="password" value="New Password" />
+          <InputLabel htmlFor="password" value="Nova senha" />
 
           <TextInput
             id="password"
@@ -76,7 +74,7 @@ export default function UpdatePasswordForm({ className = '' }) {
             value={data.password}
             onChange={(e) => setData('password', e.target.value)}
             type="password"
-            className="mt-1 block w-full"
+            className="mt-1 block w-full text-{#212922}"
             autoComplete="new-password"
           />
 
@@ -86,7 +84,7 @@ export default function UpdatePasswordForm({ className = '' }) {
         <div>
           <InputLabel
             htmlFor="password_confirmation"
-            value="Confirm Password"
+            value="Confirmação da senha"
           />
 
           <TextInput
@@ -94,7 +92,7 @@ export default function UpdatePasswordForm({ className = '' }) {
             value={data.password_confirmation}
             onChange={(e) => setData('password_confirmation', e.target.value)}
             type="password"
-            className="mt-1 block w-full"
+            className="mt-1 block w-full text-{#212922}"
             autoComplete="new-password"
           />
 
@@ -110,7 +108,7 @@ export default function UpdatePasswordForm({ className = '' }) {
             leaveTo="opacity-0"
             className="transition ease-in-out"
           >
-            <p className="text-sm text-gray-600">Salvo.</p>
+            <p className="text-sm text-{#212922}">Salvo.</p>
           </Transition>
         </div>
       </form>

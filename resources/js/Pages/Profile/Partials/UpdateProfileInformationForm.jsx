@@ -27,22 +27,22 @@ export default function UpdateProfileInformation({
   return (
     <section className={className}>
       <header>
-        <h2 className="text-lg font-medium text-gray-900 ">
+        <h2 className="text-lg font-medium text-{#212922}">
           Informações do Perfil
         </h2>
 
-        <p className="mt-1 text-sm text-gray-600">
+        <p className="mt-1 text-sm text-{#212922} ">
           Atualize as informações do perfil e o endereço de e-mail da sua conta
         </p>
       </header>
 
       <form onSubmit={submit} className="mt-6 space-y-6">
         <div>
-          <InputLabel htmlFor="name" value="Name" />
+          <InputLabel htmlFor="name" value="Nome" />
 
           <TextInput
             id="name"
-            className="mt-1 block w-full"
+            className="mt-1 block w-full text-{#212922}"
             value={data.name}
             onChange={(e) => setData('name', e.target.value)}
             required
@@ -59,7 +59,7 @@ export default function UpdateProfileInformation({
           <TextInput
             id="email"
             type="email"
-            className="mt-1 block w-full"
+            className="mt-1 block w-full text-{#212922}"
             value={data.email}
             onChange={(e) => setData('email', e.target.value)}
             required
@@ -71,13 +71,13 @@ export default function UpdateProfileInformation({
 
         {mustVerifyEmail && user.email_verified_at === null && (
           <div>
-            <p className="text-sm mt-2 text-gray-800">
+            <p className="text-sm mt-2 text-{#212922}">
               Seu endereço de e-mail não foi verificado.
               <Link
                 href={route('verification.send')}
                 method="post"
                 as="button"
-                className="underline text-sm text-gray-600 hover:text-gray-900rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                className="underline text-sm text-{#212922} rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-offset-gray-800"
               >
                 Clique aqui para reenviar o e-mail de verificação.
               </Link>
@@ -101,7 +101,7 @@ export default function UpdateProfileInformation({
             leaveTo="opacity-0"
             className="transition ease-in-out"
           >
-            <p className="text-sm text-gray-600">Salvo.</p>
+            <p className="text-sm text-{#212922}">Salvo.</p>
           </Transition>
         </div>
       </form>
