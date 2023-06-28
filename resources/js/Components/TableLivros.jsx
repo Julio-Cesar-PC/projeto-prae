@@ -17,7 +17,7 @@ export default function TableLivros({ livros }) {
             <div className="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                     <a href='livro/cadastro' className="btn btn-primary mb-5"><FaPlus/>Novo Livro</a>
-                    <table className="table table-xs table-fixed min-w-full">
+                    <table className="table min-w-full">
                         <thead className="bg-gray-50">
                             <tr>
                                 <th scope="col" className="px-6 py-3 text-left text-xs font-medium text-gray-900  uppercase tracking-wider"> # </th>
