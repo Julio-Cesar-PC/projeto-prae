@@ -36,6 +36,6 @@ class DatabaseSeeder extends Seeder
             'nome' => 'DANIFICADO',
         ]);
 
-        \App\Models\Book::factory()->count(50)->create();
+        // \App\Models\Book::factory()->count(50)->create();
     }
 }
