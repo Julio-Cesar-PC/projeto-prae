@@ -40,11 +40,11 @@ export default function UpdatePasswordForm({ className = '' }) {
   return (
     <section className={className}>
       <header>
-        <h2 className="text-lg font-medium text-gray-900 dark:text-gray-100">
+        <h2 className="text-lg font-medium text-gray-900">
           Atualizar Senha
         </h2>
 
-        <p className="mt-1 text-sm text-gray-600 dark:text-gray-400">
+        <p className="mt-1 text-sm text-gray-600">
           Certifique-se de que sua conta esteja usando uma senha longa e
           aleatória para permanecer segura.{' '}
         </p>
@@ -110,7 +110,7 @@ export default function UpdatePasswordForm({ className = '' }) {
             leaveTo="opacity-0"
             className="transition ease-in-out"
           >
-            <p className="text-sm text-gray-600 dark:text-gray-400">Salvo.</p>
+            <p className="text-sm text-gray-600">Salvo.</p>
           </Transition>
         </div>
       </form>

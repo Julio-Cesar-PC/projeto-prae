@@ -1,5 +1,5 @@
 import { FaPlus } from 'react-icons/fa'
-import { useForm } from '@inertiajs/react'
+import { Link, useForm } from '@inertiajs/react'
 import Pagination from '@/Components/Pagination'
 
 export default function TableLivros({ livros }) {
@@ -11,6 +11,11 @@ export default function TableLivros({ livros }) {
             onError: () => console.log('Erro ao excluir livro')
         })
     }
+
+    function editarLivro(livro) {
+
+    }
+
 
     return (
         <div className="py-12">
@@ -37,11 +42,7 @@ export default function TableLivros({ livros }) {
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 "> {livro.publisher} </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 "> <span className="badge badge-primary">{livro.category.nome}</span> </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex gap-2">
-                                    <label  htmlFor={'modalEditar-'+livro.id}
-                                                className="btn btn-primary btn-xs" >Editar
-                                        </label >
-                                        <input type="checkbox" id={'modalEditar-'+livro.id} className="modal-toggle" />
-
+                                        <Link href={route('livros.edit', {book_id: livro.id})} className="btn btn-primary btn-xs">Editar</Link>
 
                                         <label  htmlFor={'modalExcluir-'+livro.id}
                                                 className="btn btn-error btn-xs" >Excluir

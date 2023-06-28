@@ -1,5 +1,5 @@
 import { FaPlus } from 'react-icons/fa'
-import { useForm } from '@inertiajs/react'
+import { Link, useForm } from '@inertiajs/react'
 
 export default function TableCategorias({ categorias, error }) {
     const { data, setData, processing, errors, reset, delete: destroy, } = useForm({});
@@ -34,11 +34,7 @@ export default function TableCategorias({ categorias, error }) {
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 "> {categoria.created_at} </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 "> {categoria.updated_at} </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex gap-2">
-                                        <label  htmlFor={'modalEditar-'+categoria.id}
-                                                className="btn btn-primary btn-xs" >Editar
-                                        </label >
-                                        <input type="checkbox" id={'modalEditar-'+categoria.id} className="modal-toggle" />
-
+                                        <Link href={route('categorias.edit', categoria.id)} className="btn btn-primary btn-xs">Editar</Link>
 
                                         <label  htmlFor={'modalExcluir-'+categoria.id}
                                                 className="btn btn-error btn-xs" >Excluir
