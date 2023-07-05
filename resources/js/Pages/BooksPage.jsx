@@ -17,7 +17,7 @@ export default function BooksPage({ auth, livros }) {
     >
       <Head title="Livros" />
 
-      <div className="alert aviso max-w-7xl mx-auto sm:px-6 lg:px-8">
+      {/* <div className="alert aviso max-w-7xl mx-auto sm:px-6 lg:px-8">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
@@ -34,8 +34,8 @@ export default function BooksPage({ auth, livros }) {
         <span>
           <Link href="/livros"> Voltar para o quadro de usuário</Link>
         </span>
-      </div>
-      <BooksCatalog livro={livros}></BooksCatalog>
+      </div> */}
+      <BooksCatalog livros={livros}></BooksCatalog>
     </AuthenticatedLayout>
   )
 }
