@@ -19,11 +19,8 @@ return new class extends Migration
             $table->string('pageCount');
             $table->string('imageLink')->nullable();
             $table->string('selfLink')->nullable();
-            $table->integer('category_id');
             $table->boolean('available')->nullable();
             $table->timestamps();
-
-            $table->foreign('category_id')->references('id')->on('categories');
         });
     }
 

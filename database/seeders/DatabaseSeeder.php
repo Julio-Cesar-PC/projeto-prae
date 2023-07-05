@@ -21,22 +21,6 @@ class DatabaseSeeder extends Seeder
             'admin' => true,
         ]);
 
-        \App\Models\Category::factory()->create([
-            'nome' => 'NOVO',
-        ]);
-
-        \App\Models\Category::factory()->create([
-            'nome' => 'USADO',
-        ]);
-
-        \App\Models\Category::factory()->create([
-            'nome' => 'SEMI-NOVO',
-        ]);
-
-        \App\Models\Category::factory()->create([
-            'nome' => 'DANIFICADO',
-        ]);
-
-        // \App\Models\Book::factory()->count(50)->create();
+        \App\Models\Book::factory()->count(50)->create();
     }
 }
