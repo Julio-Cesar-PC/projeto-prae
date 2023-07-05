@@ -14,6 +14,7 @@ export default function Dashboard({ auth, livros }) {
           Dashboard
         </h2>
       }
+
     >
       <Head title="Dashboard" />
 
@@ -42,6 +43,7 @@ export default function Dashboard({ auth, livros }) {
         <div className="max-w-full w-full mx-auto sm:px-6 lg:px-8">
           <div className="bg-white w-full overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 w-full text-gray-900 dark:text-gray-100">
+
               <h2 className="font-semibold text-xl text-gray-800 leading-tight">
                 Biblioteca
               </h2>
