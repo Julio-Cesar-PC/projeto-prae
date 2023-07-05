@@ -43,4 +43,9 @@ class User extends Authenticatable
     {
         return $this->banned;
     }
+
+    public function bookRequest()
+    {
+        return $this->hasMany(BookRequest::class);
+    }
 }

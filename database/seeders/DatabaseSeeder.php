@@ -12,7 +12,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()->create([
             'name' => 'Admin',
@@ -21,6 +20,9 @@ class DatabaseSeeder extends Seeder
             'admin' => true,
         ]);
 
-        // \App\Models\Book::factory()->count(50)->create();
+        \App\Models\User::factory(10)->create();
+
+        \App\Models\Book::factory()->count(50)->create();
+        \App\Models\BookRequest::factory()->count(50)->create();
     }
 }
