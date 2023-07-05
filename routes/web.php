@@ -34,17 +34,16 @@ Route::get('/partners', function () {
 
 
 Route::middleware('auth')->group(function () {
+    // books
     Route::get('/books', [BookController::class, 'findAvailableBooks'])->name('livros.disponiveis');
 
+    // profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', function () {
-        return Inertia::render('Admin');
-    })->name('admin');
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/requests', [RequestsController::class, 'requests'])->name('requests');
 
