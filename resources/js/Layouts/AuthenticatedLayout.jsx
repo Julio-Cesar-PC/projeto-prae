@@ -24,7 +24,6 @@ export default function Authenticated({ user, header, children }) {
                 >
                   Dashboard
                 </NavLink>
-
                 { user.admin ? (
                     <Dropdown>
                     <Dropdown.Trigger>
@@ -61,29 +60,32 @@ export default function Authenticated({ user, header, children }) {
                           Livros
                         </NavLink>
                       </Dropdown.Link>
-                      <Dropdown.Link href={route('categorias.index')}>
+                      <Dropdown.Link
+                        href={route('livros.index')}
+                        active={route().current('livros.index')}
+                      >
                         <NavLink
-                          href={route('categorias.index')}
-                          active={route().current('categorias.index')}
+                          href={route('livros.index')}
+                          active={route().current('livros.index')}
                         >
-                          Categorias
+                          Administradores
                         </NavLink>
                       </Dropdown.Link>
-                      <div className="indicator">
-                  <span className="indicator-item badge badge-primary">
-                    99+
-                  </span>
-                  <NavLink
-                    href={route('requests')}
-                    active={route().current('requests')}
-                  >
-                    Solicitações
-                  </NavLink>
-                </div>
                     </Dropdown.Content>
                   </Dropdown>
-
-                ) : (<></>) }
+                  ) : (<></>) }
+                  { user.admin ? (
+                    <div className="indicator">
+                    <span className="indicator-item badge badge-primary">
+                        99+
+                    </span>
+                    <NavLink
+                        href={route('requests')}
+                        active={route().current('requests')}
+                    >
+                        Solicitações
+                    </NavLink>
+                </div>) : (<></>) }
               </div>
             </div>
             <div className="hidden sm:flex sm:items-center sm:ml-6">
