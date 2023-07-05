@@ -32,7 +32,6 @@ Route::get('/partners', function () {
     return Inertia::render('Partners');
 })->name('partners');
 
-Route::get('/requests', [RequestsController::class, 'requests'])->middleware(['auth', 'verified'])->name('requests');
 
 Route::middleware('auth')->group(function () {
     Route::get('/books', [BookController::class, 'findAvailableBooks'])->name('livros.disponiveis');
@@ -47,7 +46,7 @@ Route::middleware(['auth', 'admin'])->group(function () {
         return Inertia::render('Admin');
     })->name('admin');
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
-
+    Route::get('/requests', [RequestsController::class, 'requests'])->name('requests');
 
     Route::get('/livros', [BookController::class, 'livros'])->name('livros.index');
     Route::get('/livro/cadastro', [BookController::class, 'cadastroLivros'])->name('livros.cadastro');

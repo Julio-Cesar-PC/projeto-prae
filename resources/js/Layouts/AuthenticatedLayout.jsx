@@ -18,11 +18,18 @@ export default function Authenticated({ user, header, children }) {
               {/* <div className="shrink-0 flex items-center"></div> */}
 
               <div className="space-x-8 flex items-center sm:-my-px sm:ml-10 sm:flex">
-                <NavLink
+                {user.admin ? <NavLink
                   href={route('dashboard')}
                   active={route().current('dashboard')}
                 >
                   Dashboard
+                </NavLink>
+                  : <></>}
+                  <NavLink
+                  href={route('livros.disponiveis')}
+                  active={route().current('livros.disponiveis')}
+                >
+                  Livros
                 </NavLink>
                 { user.admin ? (
                     <Dropdown>
