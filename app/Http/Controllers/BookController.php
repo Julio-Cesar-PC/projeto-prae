@@ -28,10 +28,7 @@ class BookController extends Controller
 
     public function cadastroLivros()
     {
-        $categories = Category::all();
-        return Inertia::render('Books/Create', [
-            'categories' => $categories,
-        ]);
+        return Inertia::render('Books/Create');
     }
 
     public function store(Request $request)
@@ -41,11 +38,9 @@ class BookController extends Controller
         $request->validate([
             'title' => 'required',
             'author' => 'required',
-            'publisher' => 'required',
             'pageCount' => '',
             'imageLink' => '',
             'selfLink' => '',
-            'category_id' => 'required',
             'available' => '',
         ]);
 
@@ -59,7 +54,6 @@ class BookController extends Controller
         // dd($id);
         return Inertia::render('Books/Edit', [
             'livro' => Book::find($id),
-            'categories' => Category::all(),
         ]);
     }
 
@@ -70,11 +64,9 @@ class BookController extends Controller
         $request->validate([
             'title' => 'required',
             'author' => 'required',
-            'publisher' => 'required',
             'pageCount' => '',
             'imageLink' => '',
             'selfLink' => '',
-            'category_id' => 'required',
             'available' => '',
         ]);
 
