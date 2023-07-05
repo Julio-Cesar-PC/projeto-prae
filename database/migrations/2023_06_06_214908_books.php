@@ -15,8 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('author');
-            $table->string('publisher');
-            $table->string('pageCount');
+            $table->string('pageCount')->nullable();
             $table->string('imageLink')->nullable();
             $table->string('selfLink')->nullable();
             $table->boolean('available')->nullable();

@@ -4,23 +4,44 @@ import TextInput from '@/Components/TextInput';
 import InputLabel from '@/Components/InputLabel';
 import InputError from '@/Components/InputError';
 import { FaSearch } from 'react-icons/fa'
+import Modal from '@/Components/Modal';
+import { useState } from 'react';
+import axios from 'axios';
+import BookcoverList from '@/Components/BookcoverList';
 
 
 export default function CadastroLivros({ auth, categories }) {
     const { data, setData, post, errors } = useForm({
         title: '',
         author: '',
-        publisher: '',
         pageCount: '',
-        category_id: '',
         available: true,
+        imageLink: null,
     });
 
     const submit = (e) => {
         e.preventDefault();
-
         post(route('livros.store'));
     };
+
+    const [showModalProcurarCapa, setShowModalProrcurarCapa] = useState(false);
+    const [query, setQuery] = useState('');
+    const [bookCovers, setBookCovers] = useState([]);
+
+    async function pesquisaCapa(e) {
+        e.preventDefault();
+        await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
+        .then((response) => {
+            console.log(query)
+            setBookCovers(response.data.items)
+        })
+    }
+
+    const chooseCover = (bookcover) => {
+        setData('imageLink', bookcover)
+        setShowModalProrcurarCapa(!showModalProcurarCapa)
+        console.log(bookcover)
+    }
 
 
 
@@ -36,82 +57,83 @@ export default function CadastroLivros({ auth, categories }) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className='flex justify-between items-center mx-6 my-6'>
                             <div className="p-6 text-gray-900 ">Cadastro de Livros</div>
-                            <button className="btn btn-primary"><FaSearch /> Procurar Livros</button>
-                        </div>
+                            <button onClick={() => setShowModalProrcurarCapa(!showModalProcurarCapa)} className="btn btn-primary"><FaSearch /> Procurar Capa</button>
 
-                        <div className="p-6 bg-white border-b border-gray-200 ">
-                            <form onSubmit={submit}>
-                                <div className="mb-3 flex">
-                                    <div className="flex-1">
-                                        <InputLabel className="form-label">Título:</InputLabel>
-                                        <TextInput  value={data.title}
+                            <Modal title="Procurar Capa" show={showModalProcurarCapa}>
+                                <div className="p-6 bg-white border-b border-gray-200 ">
+                                    <div className="mb-3 flex justify-between items-center">
+                                        <h1 className=''>Pesquise por Capas</h1>
+                                        <button onClick={() => setShowModalProrcurarCapa(!showModalProcurarCapa)} className="btn btn-ghost rounded-full">X</button>
+                                    </div>
+                                    <form onSubmit={(e) => pesquisaCapa(e)}>
+                                        <div className="mb-3 flex">
+                                            <div className="flex-1">
+                                                <InputLabel className="form-label">Pesquise:</InputLabel>
+                                                <TextInput value={query}
                                                     type="text"
                                                     placeholder="Titulo..."
                                                     className="input w-full max-w-xs"
-                                                    onChange={(e) => setData('title', e.target.value)}/>
-                                        <InputError message={errors.title} className="mt-2" />
-                                    </div>
-
-                                    <div className="flex-1">
-                                        <InputLabel className="form-label">Autor:</InputLabel>
-                                        <TextInput  value={data.author}
-                                                    type="text"
-                                                    placeholder="Autor..."
-                                                    className="input w-full max-w-xs"
-                                                    onChange={(e) => setData('author', e.target.value)}/>
-                                        <InputError message={errors.author} className="mt-2" />
-                                    </div>
+                                                    onChange={(e) => setQuery(e.target.value)} />
+                                                <InputError message={errors.title} className="mt-2" />
+                                            </div>
+                                        </div>
+                                        <button type="submit" className="btn btn-primary">Pesquisar</button>
+                                    </form>
+                                    <BookcoverList chooseCover={chooseCover} bookcovers={bookCovers} />
                                 </div>
-
-                                <div className="mb-3 flex">
-                                    <div className="flex-1">
-                                        <InputLabel className="form-label">Editora:</InputLabel>
-                                        <TextInput  value={data.publisher}
-                                                    type="text"
-                                                    placeholder="Editora..."
-                                                    className="input w-full max-w-xs"
-                                                    onChange={(e) => setData('publisher', e.target.value)}/>
-                                        <InputError message={errors.publisher} className="mt-2" />
-                                    </div>
-
-                                    <div className="flex-1">
-                                        <InputLabel className="form-label">Número de páginas:</InputLabel>
-                                        <TextInput  value={data.pageCount}
-                                                    type="number"
-                                                    placeholder="Número de páginas..."
-                                                    className="input  w-full max-w-xs"
-                                                    onChange={(e) => setData('pageCount', e.target.value)}/>
-                                        <InputError message={errors.pageCount} className="mt-2" />
-                                    </div>
+                            </Modal>
 
 
-                                </div>
-
-                                <div className="mb-3 flex">
-                                    <div className="flex-1">
-                                        <InputLabel className="form-label">Categoria:</InputLabel>
-                                        <select onChange={(e) =>setData('category_id', e.target.value)}
-                                                value={data.category_id}
-                                                className="select w-full max-w-xs text-black">
-                                            <option disabled>Selecione uma categoria</option>
-                                            {categories.map((category) => (
-                                                <option key={category.id} value={category.id}>{category.nome}</option>
-                                            ))}
-                                        </select>
-                                    </div>
-
-                                    <div className="flex-1">
-                                        <InputLabel className="form-label">Disponível:</InputLabel>
-                                        <input  checked={data.available}
-                                                type="checkbox"
-                                                className="checkbox"
-                                                onChange={(e) => setData('available', e.target.checked)} />
-                                    </div>
-                                </div>
-
-                                <button type="submit" className="btn btn-primary">Cadastrar</button>
-                            </form>
                         </div>
+                    </div>
+
+                    <div className="p-6 bg-white border-b border-gray-200 ">
+                        <form onSubmit={submit}>
+                            <div className="mb-3 flex">
+                                <div className="flex-1">
+                                    <InputLabel className="form-label">Título:</InputLabel>
+                                    <TextInput value={data.title}
+                                        type="text"
+                                        placeholder="Titulo..."
+                                        className="input w-full max-w-xs"
+                                        onChange={(e) => setData('title', e.target.value)} />
+                                    <InputError message={errors.title} className="mt-2" />
+                                </div>
+
+                                <div className="flex-1">
+                                    <InputLabel className="form-label">Autor:</InputLabel>
+                                    <TextInput value={data.author}
+                                        type="text"
+                                        placeholder="Autor..."
+                                        className="input w-full max-w-xs"
+                                        onChange={(e) => setData('author', e.target.value)} />
+                                    <InputError message={errors.author} className="mt-2" />
+                                </div>
+                            </div>
+
+                            <div className="mb-3 flex">
+                                <div className="flex-1">
+                                    <InputLabel className="form-label">Número de páginas:</InputLabel>
+                                    <TextInput value={data.pageCount}
+                                        type="number"
+                                        placeholder="Número de páginas..."
+                                        className="input  w-full max-w-xs"
+                                        onChange={(e) => setData('pageCount', e.target.value)} />
+                                    <InputError message={errors.pageCount} className="mt-2" />
+                                </div>
+
+                                <div className="flex-1">
+                                    <InputLabel className="form-label">Disponível:</InputLabel>
+                                    <input checked={data.available}
+                                        type="checkbox"
+                                        className="checkbox"
+                                        onChange={(e) => setData('available', e.target.checked)} />
+                                </div>
+
+                            </div>
+
+                            <button type="submit" className="btn btn-primary">Cadastrar</button>
+                        </form>
                     </div>
                 </div>
             </div>

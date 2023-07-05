@@ -81,13 +81,6 @@ export default function TableLivros({ livros }) {
                   className="px-6 py-3 text-left text-xs font-medium text-gray-900  uppercase tracking-wider"
                 >
                   {' '}
-                  Editora{' '}
-                </th>
-                <th
-                  scope="col"
-                  className="px-6 py-3 text-left text-xs font-medium text-gray-900  uppercase tracking-wider"
-                >
-                  {' '}
                   Ações{' '}
                 </th>
               </tr>
@@ -106,10 +99,6 @@ export default function TableLivros({ livros }) {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 ">
                     {' '}
                     {livro.author}{' '}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 ">
-                    {' '}
-                    {livro.publisher}{' '}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex gap-2">
                     <Link
