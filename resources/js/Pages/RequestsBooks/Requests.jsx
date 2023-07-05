@@ -3,6 +3,7 @@ import TableLivros from '@/Components/TableLivros'
 import AdminPage from '@/Components/AdminPage'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import { Head, Link } from '@inertiajs/react'
+import RequestTable from '@/Components/RequestTable'
 
 export default function Requests({ auth, livros }) {
   return (
@@ -31,24 +32,28 @@ export default function Requests({ auth, livros }) {
           ></path>
         </svg>
         <span>
-          Teste
-          <Link href="/livros"> Voltar para o quadro de usuário</Link>
+          Nesta página é possível visualizar, recusar e aceitar as solicitações
+          de troca. Assim como ver informações da troca desejada.
+          <Link href="/dashboard" className="font-bold">
+            Voltar para o Dashboard
+          </Link>
         </span>
       </div>
 
-      {/* <div className="py-12">
+      <div className="py-12">
         <div className="max-w-full w-full mx-auto sm:px-6 lg:px-8">
           <div className="bg-white w-full overflow-hidden shadow-sm sm:rounded-lg">
             <div className="p-6 w-full text-gray-900 dark:text-gray-100">
               <h2 className="font-semibold text-xl text-gray-800 leading-tight">
-                Biblioteca
-              </h2> */}
-      {/* tabela */}
-      {/* <TableLivros livros={livros}></TableLivros>
+                Solicitações
+              </h2>
+              {/* tabela */}
+              {/* <TableLivros livros={livros}></TableLivros> */}
+              <RequestTable></RequestTable>
             </div>
           </div>
         </div>
-      </div> */}
+      </div>
     </AuthenticatedLayout>
   )
 }

@@ -21,6 +21,6 @@ class DatabaseSeeder extends Seeder
             'admin' => true,
         ]);
 
-        \App\Models\Book::factory()->count(50)->create();
+        // \App\Models\Book::factory()->count(50)->create();
     }
 }
