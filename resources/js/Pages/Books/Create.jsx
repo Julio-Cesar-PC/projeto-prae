@@ -32,15 +32,17 @@ export default function CadastroLivros({ auth, categories }) {
         e.preventDefault();
         await axios.get(`https://www.googleapis.com/books/v1/volumes?q=${query}`)
         .then((response) => {
-            console.log(query)
             setBookCovers(response.data.items)
         })
     }
 
-    const chooseCover = (bookcover) => {
-        setData('imageLink', bookcover)
+    const chooseBook = (book) => {
+        setData('title', book.volumeInfo.title)
+        setData('author', book.volumeInfo.authors[0])
+        setData('pageCount', book.volumeInfo.pageCount)
+        setData('imageLink', book.volumeInfo.imageLinks.thumbnail)
         setShowModalProrcurarCapa(!showModalProcurarCapa)
-        console.log(bookcover)
+        console.log(book)
     }
 
 
@@ -57,9 +59,8 @@ export default function CadastroLivros({ auth, categories }) {
                     <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                         <div className='flex justify-between items-center mx-6 my-6'>
                             <div className="p-6 text-gray-900 ">Cadastro de Livros</div>
-                            <button onClick={() => setShowModalProrcurarCapa(!showModalProcurarCapa)} className="btn btn-primary"><FaSearch /> Procurar Capa</button>
 
-                            <Modal title="Procurar Capa" show={showModalProcurarCapa}>
+                            <Modal maxWidth='4xl' title="Procurar Capa" show={showModalProcurarCapa}>
                                 <div className="p-6 bg-white border-b border-gray-200 ">
                                     <div className="mb-3 flex justify-between items-center">
                                         <h1 className=''>Pesquise por Capas</h1>
@@ -74,12 +75,18 @@ export default function CadastroLivros({ auth, categories }) {
                                                     placeholder="Titulo..."
                                                     className="input w-full max-w-xs"
                                                     onChange={(e) => setQuery(e.target.value)} />
-                                                <InputError message={errors.title} className="mt-2" />
                                             </div>
                                         </div>
                                         <button type="submit" className="btn btn-primary">Pesquisar</button>
                                     </form>
-                                    <BookcoverList chooseCover={chooseCover} bookcovers={bookCovers} />
+                                    <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                                    {bookCovers.map((bookcover) => (
+                                        <div className='flex flex-col items-center bg-gray-200 rounded'>
+                                            <img className='hover:scale-105 w-24' onClick={() => chooseBook(bookcover)} key={bookcover.id} src={bookcover.volumeInfo?.imageLinks?.thumbnail ? bookcover.volumeInfo?.imageLinks?.thumbnail : '/placeholder.webp'} alt='Sem Capa' />
+                                            <h3 className='text-center'>{bookcover.volumeInfo?.title}</h3>
+                                        </div>
+                                    ))}
+                                    </div>
                                 </div>
                             </Modal>
 
@@ -131,6 +138,25 @@ export default function CadastroLivros({ auth, categories }) {
                                 </div>
 
                             </div>
+
+                            <div className="mb-3 flex">
+                                <div className="flex-1">
+                                    <InputLabel className="form-label">Capa:</InputLabel>
+                                    <div className="flex gap-2 items-center">
+                                    <TextInput value={data.imageLink}
+                                        type="text"
+                                        placeholder="Capa..."
+                                        className="input w-full max-w-xs"
+                                        onChange={(e) => setData('imageLink', e.target.value)} />
+                                        <button type='button' onClick={() => setShowModalProrcurarCapa(!showModalProcurarCapa)} className="btn btn-primary"><FaSearch /> Procurar</button>
+                                    </div>
+                                    <InputError message={errors.imageLink} className="mt-2" />
+                                </div>
+                                <div className="flex-1">
+                                    <img src={data.imageLink} alt="" className="" />
+                                </div>
+                            </div>
+
 
                             <button type="submit" className="btn btn-primary">Cadastrar</button>
                         </form>
