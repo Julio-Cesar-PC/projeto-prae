@@ -43,6 +43,12 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin', function () {
+        return Inertia::render('Admin');
+    })->name('admin');
 
     Route::get('/livros', [BookController::class, 'livros'])->name('livros.index');
     Route::get('/livro/cadastro', [BookController::class, 'cadastroLivros'])->name('livros.cadastro');
@@ -58,12 +64,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/categoria/{category_id}/edit', [CategoryController::class, 'edit'])->name('categorias.edit');
     Route::patch('/categoria/{category_id}/update', [CategoryController::class, 'update'])->name('categorias.update');
     Route::delete('/categoria/destroy/{category_id}', [CategoryController::class, 'destroy'])->name('categorias.destroy');
-});
-
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin', function () {
-        return Inertia::render('Admin');
-    })->name('admin');
 });
 
 require __DIR__.'/auth.php';

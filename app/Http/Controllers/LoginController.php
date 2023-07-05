@@ -29,6 +29,7 @@ class LoginController extends Controller
                     'name' => $googleUser->getName(),
                     'provider' => 'google',
                     'provider_id' => $googleUser->getId(),
+                    'admin' => false,
                 ]
             );
 

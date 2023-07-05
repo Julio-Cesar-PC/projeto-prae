@@ -15,27 +15,12 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
 
         \App\Models\User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
             'password' => bcrypt('password'),
+            'admin' => true,
         ]);
 
-        \App\Models\Category::factory()->create([
-            'nome' => 'NOVO',
-        ]);
-
-        \App\Models\Category::factory()->create([
-            'nome' => 'USADO',
-        ]);
-
-        \App\Models\Category::factory()->create([
-            'nome' => 'SEMI-NOVO',
-        ]);
-
-        \App\Models\Category::factory()->create([
-            'nome' => 'DANIFICADO',
-        ]);
-
-        // \App\Models\Book::factory()->count(50)->create();
+        \App\Models\Book::factory()->count(50)->create();
     }
 }
