@@ -70,6 +70,17 @@ export default function Authenticated({ user, header, children }) {
                     </Dropdown.Link>
                   </Dropdown.Content>
                 </Dropdown>
+                <div className="indicator">
+                  <span className="indicator-item badge badge-primary">
+                    99+
+                  </span>
+                  <NavLink
+                    href={route('requests')}
+                    active={route().current('requests')}
+                  >
+                    Solicitações
+                  </NavLink>
+                </div>
               </div>
             </div>
             <div className="hidden sm:flex sm:items-center sm:ml-6">
