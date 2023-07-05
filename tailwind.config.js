@@ -38,12 +38,10 @@ export default {
           warning: '#ec9d3c',
 
           error: '#f0757d',
-
         },
       },
     ],
   },
 
-  plugins: [forms, require('daisyui')],
+  plugins: [forms, require('daisyui'), require('@tailwindcss/aspect-ratio')],
 }
-

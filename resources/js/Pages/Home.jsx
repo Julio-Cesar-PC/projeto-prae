@@ -16,7 +16,7 @@ const Home = () => {
             <h1 className="mb-5 text-5xl font-bold">
               Bem-vindo ao nosso site!
             </h1>
-            <p className="mb-5">
+            <p className="mb-5 font-semibold">
               Somos uma iniciativa dedicada a promover a leitura e a troca de
               livros. Explore nossa seleção de títulos, compartilhe suas
               histórias favoritas e ajude a espalhar o amor pela leitura.

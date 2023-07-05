@@ -83,4 +83,13 @@ class BookController extends Controller
 
         return redirect()->route('livros.index');
     }
+
+    public function findAvailableBooks(){
+        $livros = Book::where('available', 1)->get();
+
+        return Inertia::render('BooksPage', [
+            'livros' => $livros,
+        ]);
+    }
+
 }
