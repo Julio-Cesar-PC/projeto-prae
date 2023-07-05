@@ -18,7 +18,7 @@ class IsAdmin
         if (auth()->user()->isAdmin()) {
             return $next($request);
         } else {
-            return redirect()->route('home');
+            abort(403, 'Você não tem permissão para acessar essa página');
         }
     }
 }
