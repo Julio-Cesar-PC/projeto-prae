@@ -1,11 +1,9 @@
-import BooksPage from '@/Components/BooksPage'
-import TableLivros from '@/Components/TableLivros'
-import AdminPage from '@/Components/AdminPage'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
 import { Head, Link } from '@inertiajs/react'
 import RequestTable from '@/Components/RequestTable'
 
-export default function Requests({ auth, livros }) {
+export default function Requests({ auth, bookRequests }) {
+    console.log(bookRequests)
   return (
     <AuthenticatedLayout
       user={auth.user}

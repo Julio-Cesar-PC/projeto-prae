@@ -2,9 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Book extends Model
 {
@@ -12,10 +12,8 @@ class Book extends Model
 
     protected $guarded = [];
 
-
-
-    public function category(): BelongsTo
+    public function bookRequest(): HasMany
     {
-        return $this->belongsTo(Category::class);
+        return $this->hasMany(BookRequest::class);
     }
 }
