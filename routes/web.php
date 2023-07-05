@@ -32,10 +32,14 @@ Route::get('/partners', function () {
     return Inertia::render('Partners');
 })->name('partners');
 
+
+
 Route::get('/dashboard', [DashboardController::class, 'dashboard'])->middleware(['auth', 'verified'])->name('dashboard');
 Route::get('/requests', [RequestsController::class, 'requests'])->middleware(['auth', 'verified'])->name('requests');
 
 Route::middleware('auth')->group(function () {
+    Route::get('/books', [BookController::class, 'findAvailableBooks'])->name('livros.disponiveis');
+
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
