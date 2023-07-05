@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link, Head } from '@inertiajs/react'
 import Footer from '@/Components/Footer'
-import NavBarHome from '@/Components/NavBarHome'
 import ApplicationLogo from '@/Components/ApplicationLogo'
 import FloatingButton from '@/Components/FloatingButton'
 
