@@ -18,10 +18,11 @@ class BookRequestFactory extends Factory
     {
         return [
             "title" => fake()->sentence(),
+            "state" => fake()->word(),
             "image" => fake()->imageUrl(),
-            "status" => fake()->sentence(),
+            "status" => fake()->word(),
             "book_id" => fake()->numberBetween(1, 50),
-            "user_id" => fake()->numberBetween(2, 10),
+            "user_id" => fake()->numberBetween(2, 9),
             "created_at" => fake()->dateTime(),
             "updated_at" => fake()->dateTime(),
         ];

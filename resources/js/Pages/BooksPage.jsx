@@ -1,8 +1,5 @@
-import TableLivros from '@/Components/TableLivros'
-import AdminPage from '@/Components/AdminPage'
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout'
-import { Head, Link } from '@inertiajs/react'
-import CategoryPage from '@/Components/CategoryPage'
+import { Head } from '@inertiajs/react'
 import BooksCatalog from '@/Components/BooksCatalog'
 
 export default function BooksPage({ auth, livros }) {
