@@ -15,10 +15,10 @@ class IsBanned
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->isBanned()) {
+        if (!auth()->user()->isBanned()) {
             return $next($request);
         } else {
-            return redirect()->route('banned');
+            return redirect()->route('profile.edit');
         }
     }
 }
