@@ -38,7 +38,10 @@ export default function Dashboard({ auth, livros }) {
           <span className="flex-1">
             Este é o quadro de administrador, aqui você pode: Adicionar livros,
             Adicionar administradores, consultar livros e ver a biblioteca.
-            <Link href="/livros"> Voltar para o quadro de usuário</Link>
+            <Link href="/livros" className="font-bold">
+              {' '}
+              Voltar para o quadro de usuário
+            </Link>
           </span>
           <button className="p-2" onClick={handleClick}>
             <svg

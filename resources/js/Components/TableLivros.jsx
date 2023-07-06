@@ -56,16 +56,20 @@ export default function TableLivros({ livros }) {
     <div className="py-12 w-full">
       <div className="max-w-full w-full mx-auto sm:px-6 lg:px-8">
         <div className="bg-white overflow-auto shadow-sm sm:rounded-lg">
-            <div className='flex justify-between items-center p-4'>
-                <a href="livro/cadastro" className="btn btn-primary mb-5">
-                    <FaPlus />
-                    Novo Livro
-                </a>
-                <form onSubmit={searchBooks}>
-                    <InputLabel >Pesquisar:</InputLabel>
-                    <TextInput placeholder='Titulos e autores' type='text' name='search' onChange={(e) => setSearch(e.target.value)}/>
-                </form>
-            </div>
+          <div className="flex justify-between items-center p-4">
+            <a href="livro/cadastro" className="btn btn-primary mb-5">
+              <FaPlus />
+              Novo Livro
+            </a>
+            <form onSubmit={searchBooks}>
+              <TextInput
+                placeholder="Titulos e autores"
+                type="text"
+                name="search"
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </form>
+          </div>
           <table className="table min-w-full">
             <thead className="bg-gray-50">
               <tr>
