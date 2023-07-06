@@ -33,8 +33,12 @@ class BookRequestController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        // dd($request->request->all());
         $bookRequest = new BookRequest();
+        $bookRequest->title = $request->title;
+        $bookRequest->state = $request->state;
+        $bookRequest->status = "Pendente";
+        $bookRequest->image = $request->image;
         $bookRequest->user_id = $request->user_id;
         $bookRequest->book_id = $request->book_id;
         $bookRequest->save();

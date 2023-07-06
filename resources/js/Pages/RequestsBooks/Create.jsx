@@ -18,7 +18,7 @@ export default function CadastroLivros({ auth, livro }) {
 
     const submit = (e) => {
         e.preventDefault();
-        post(route('request.store'));
+        post(route('request.store', livro.id));
     };
 
     return (
@@ -37,6 +37,17 @@ export default function CadastroLivros({ auth, livro }) {
                     </div>
 
                     <div className="p-6 bg-white border-b border-gray-200 ">
+                        <div className='flex gap-5 items-center mx-6 my-6'>
+                            <div className="flex flex-col">
+                                <h1 className='font-bold text-xl'>Livro Solicitado:</h1>
+                                <h3 className='text-md'>Titulo: {livro.title}</h3>
+                                <h3 className='text-md'>Autor: {livro.author}</h3>
+                            </div>
+                            <img className="w-36" src={livro.imageLink} alt={livro.title} />
+                        </div>
+
+                        <div className="divider text-gray-500">Livro Oferecido</div>
+
                         <form onSubmit={submit}>
                             <div className="mb-3 flex">
                                 <div className="flex-1">
@@ -50,12 +61,15 @@ export default function CadastroLivros({ auth, livro }) {
                                 </div>
 
                                 <div className="flex-1">
-                                    <InputLabel className="form-label">Autor:</InputLabel>
-                                    <TextInput value={data.state}
-                                        type="text"
-                                        placeholder="Autor..."
+                                    <InputLabel className="form-label">Condição do livro:</InputLabel>
+                                    <select value={data.state}
                                         className="input w-full max-w-xs"
-                                        onChange={(e) => setData('state', e.target.value)} />
+                                        onChange={(e) => setData('state', e.target.value)}>
+                                        <option disabled value="">Selecione</option>
+                                        <option value="Novo">Novo</option>
+                                        <option value="Semi-novo">Semi-novo</option>
+                                        <option value="Usado">Usado</option>
+                                    </select>
                                     <InputError message={errors.state} className="mt-2" />
                                 </div>
                             </div>

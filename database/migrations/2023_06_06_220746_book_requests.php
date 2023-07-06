@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('state');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('status');
             $table->integer('book_id');
             $table->integer('user_id');
