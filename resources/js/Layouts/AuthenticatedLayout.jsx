@@ -68,14 +68,25 @@ export default function Authenticated({ user, header, children }) {
                         </NavLink>
                       </Dropdown.Link>
                       <Dropdown.Link
-                        href={route('livros.index')}
-                        active={route().current('livros.index')}
+                        href={route('admin.index')}
+                        active={route().current('admin.index')}
                       >
                         <NavLink
-                          href={route('livros.index')}
-                          active={route().current('livros.index')}
+                          href={route('admin.index')}
+                          active={route().current('admin.index')}
                         >
                           Administradores
+                        </NavLink>
+                      </Dropdown.Link>
+                      <Dropdown.Link
+                        href={route('usuarios.index')}
+                        active={route().current('usuarios.index')}
+                      >
+                        <NavLink
+                          href={route('usuarios.index')}
+                          active={route().current('usuarios.index')}
+                        >
+                          Usuários
                         </NavLink>
                       </Dropdown.Link>
                     </Dropdown.Content>

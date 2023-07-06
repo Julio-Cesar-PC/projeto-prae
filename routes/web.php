@@ -5,6 +5,7 @@ use App\Http\Controllers\BookController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\BookRequestController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -33,13 +34,15 @@ Route::get('/partners', function () {
 })->name('partners');
 
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth', 'ban')->group(function () {
     // books
     Route::get('/books', [BookController::class, 'findAvailableBooks'])->name('livros.disponiveis');
     Route::get('/books/book/{id}', [BookController::class, 'viewBook'])->name('livros.view');
     Route::get('/books/book/{id}/create', [BookRequestController::class, 'create'])->name('request.create');
     Route::post('/books/book/{id}/store', [BookRequestController::class, 'store'])->name('request.store');
+});
 
+Route::middleware('auth')->group(function () {
     // profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -49,6 +52,14 @@ Route::middleware('auth')->group(function () {
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
     Route::get('/requests', [BookRequestController::class, 'index'])->name('requests');
+
+    Route::get('/usuarios', [UsersController::class, 'index'])->name('usuarios.index');
+    Route::patch('/usuario/{user_id}/ban', [UsersController::class, 'ban'])->name('usuarios.ban');
+    Route::delete('/usuario/{user_id}/destroy', [UsersController::class, 'destroy'])->name('usuarios.destroy');
+
+    Route::get('/admins', function () {
+        return "admins";
+    })->name('admin.index');
 
     Route::get('/livros', [BookController::class, 'livros'])->name('livros.index');
     Route::get('/livro/cadastro', [BookController::class, 'cadastroLivros'])->name('livros.cadastro');

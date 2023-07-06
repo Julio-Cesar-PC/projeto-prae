@@ -16,4 +16,11 @@ class Book extends Model
     {
         return $this->hasMany(BookRequest::class);
     }
+
+    public function scopeFilter($query, $filters) {
+        if ($filters['search'] ?? false) {
+            $query->where('title', 'like', '%' . $filters['search'] . '%')
+                ->orWhere('author', 'like', '%' . $filters['search'] . '%');
+        }
+    }
 }
