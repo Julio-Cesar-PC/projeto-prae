@@ -43,6 +43,7 @@ Route::middleware('auth', 'ban')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
+    Route::get('/minhas-solicitacoes', [UsersController::class, 'myRequests'])->name('request.myRequests');
     // profile
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
@@ -51,9 +52,13 @@ Route::middleware('auth')->group(function () {
 
 Route::middleware(['auth', 'admin'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
+
     Route::get('/requests', [BookRequestController::class, 'index'])->name('requests');
+    Route::patch('/request/{id}/accept', [BookRequestController::class, 'acceptBookRequest'])->name('request.accept');
+    Route::patch('/request/{id}/reject', [BookRequestController::class, 'denyBookRequest'])->name('request.reject');
 
     Route::get('/usuarios', [UsersController::class, 'index'])->name('usuarios.index');
+    Route::get('/usuario/{user_id}', [UsersController::class, 'show'])->name('usuarios.show');
     Route::patch('/usuario/{user_id}/ban', [UsersController::class, 'ban'])->name('usuarios.ban');
     Route::delete('/usuario/{user_id}/destroy', [UsersController::class, 'destroy'])->name('usuarios.destroy');
 

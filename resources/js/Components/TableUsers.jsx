@@ -96,12 +96,14 @@ export default function TableLivros({ users }) {
                             {users.data.map((user) => (
                                 <tr className="hover" key={user.id}>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 ">
-                                        {' '}
-                                        {user.id}{' '}
+                                            {' '}
+                                            {user.id}{' '}
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 ">
-                                        {' '}
-                                        {user.name}{' '}
+                                        <Link href={route('usuarios.show', user.id)}>
+                                            {' '}
+                                            {user.name}{' '}
+                                        </Link>
                                     </td>
                                     <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 ">
                                         {' '}
