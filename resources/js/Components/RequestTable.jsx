@@ -147,14 +147,14 @@ export default function RequestTable(livros) {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex gap-2">
                     <label
-                      htmlFor={'modalAceitar-' + livro.book.id}
+                      htmlFor={'modalAceitar-' + livro.id}
                       className="btn btn-primary btn-xs"
                     >
                       <GoCheck />
                     </label>
                     <input
                       type="checkbox"
-                      id={'modalAceitar-' + livro.book.id}
+                      id={'modalAceitar-' + livro.id}
                       className="modal-toggle"
                     />
                     {/* Modal de aceitar */}
@@ -168,13 +168,13 @@ export default function RequestTable(livros) {
                         </p>
                         <div className="modal-action">
                           <label
-                            htmlFor={'modalAceitar-' + livro.book.id}
+                            htmlFor={'modalAceitar-' + livro.id}
                             className="btn"
                           >
                             Não
                           </label>
                           <label
-                            htmlFor={'modalAceitar-' + livro.book.id}
+                            htmlFor={'modalAceitar-' + livro.id}
                             className="btn btn-primary"
                             onClick={() => {
                               aceitarSolicitacao(livro)
@@ -186,20 +186,20 @@ export default function RequestTable(livros) {
                       </form>
                       <label
                         className="modal-backdrop"
-                        htmlFor={'modalAceitar-' + livro.book.id}
+                        htmlFor={'modalAceitar-' + livro.id}
                       ></label>
                     </div>
                     {/* Fim modal de aceitar */}
 
                     <label
-                      htmlFor={'modalRecusar-' + livro.book.id}
+                      htmlFor={'modalRecusar-' + livro.id}
                       className="btn btn-error btn-xs"
                     >
                       <GoX />
                     </label>
                     <input
                       type="checkbox"
-                      id={'modalRecusar-' + livro.book.id}
+                      id={'modalRecusar-' + livro.id}
                       className="modal-toggle"
                     />
 
@@ -214,13 +214,13 @@ export default function RequestTable(livros) {
                         </p>
                         <div className="modal-action">
                           <label
-                            htmlFor={'modalRecusar-' + livro.book.id}
+                            htmlFor={'modalRecusar-' + livro.id}
                             className="btn"
                           >
                             Não
                           </label>
                           <label
-                            htmlFor={'modalRecusar-' + livro.book.id}
+                            htmlFor={'modalRecusar-' + livro.id}
                             className="btn btn-primary"
                             onClick={() => {
                               recusarSolicitacao(livro)
@@ -232,7 +232,7 @@ export default function RequestTable(livros) {
                       </form>
                       <label
                         className="modal-backdrop"
-                        htmlFor={'modalRecusar-' + livro.book.id}
+                        htmlFor={'modalRecusar-' + livro.id}
                       ></label>
                     </div>
                     {/* Fim modal de recusar */}
