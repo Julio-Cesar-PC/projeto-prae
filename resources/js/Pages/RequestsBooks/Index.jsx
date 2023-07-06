@@ -21,22 +21,7 @@ export default function Requests({ auth, bookRequests }) {
     >
       <Head title="Trocas pendentes" />
       {isVisible && (
-        <div className="alert aviso max-w-7xl mx-auto sm:px-6 lg:px-8 relative">
-          <button className="absolute top-0 right-0 p-2" onClick={handleClick}>
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              className="stroke-info shrink-0 w-6 h-6"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M6 18L18 6M6 6l12 12"
-              ></path>
-            </svg>
-          </button>
+        <div className="alert aviso max-w-7xl mx-auto sm:px-6 lg:px-8 relative flex items-center">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -51,13 +36,29 @@ export default function Requests({ auth, bookRequests }) {
             ></path>
           </svg>
 
-          <span>
+          <span className="flex-1">
             Nesta página é possível visualizar, recusar e aceitar as
             solicitações de troca. Assim como ver informações da troca desejada.
             <Link href="/dashboard" className="font-bold">
               Voltar para o Dashboard
             </Link>
           </span>
+
+          <button className="p-2" onClick={handleClick}>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              className="stroke-info shrink-0 w-6 h-6"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </button>
         </div>
       )}
 
