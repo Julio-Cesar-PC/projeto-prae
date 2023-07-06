@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use App\Models\User;
+use App\Providers\RouteServiceProvider;
 
 class LoginController extends Controller
 {
@@ -30,6 +31,7 @@ class LoginController extends Controller
                     'provider' => 'google',
                     'provider_id' => $googleUser->getId(),
                     'admin' => false,
+                    'banned' => false,
                 ]
             );
 
@@ -37,7 +39,7 @@ class LoginController extends Controller
             auth()->login($user, true);
 
             // redirecionando o usuário para a home
-            return redirect()->to('/dashboard');
+            return redirect(RouteServiceProvider::HOME);
 
         } catch (\Exception $e) {
             dd($e->getMessage());

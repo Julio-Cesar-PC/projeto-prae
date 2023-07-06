@@ -34,8 +34,17 @@ export default function Authenticated({ user, header, children }) {
                 >
                   Livros
                 </NavLink>
-                {user.admin ? (
-                  <Dropdown>
+
+                { !user.admin ? (
+                    <NavLink
+                    href={route('request.myRequests')}
+                    active={route().current('request.myRequests')}
+                    >
+                     Minhas Solicitações
+                    </NavLink>
+                ) : (<></>) }
+                { user.admin ? (
+                    <Dropdown>
                     <Dropdown.Trigger>
                       <span className="inline-flex rounded-md">
                         <button

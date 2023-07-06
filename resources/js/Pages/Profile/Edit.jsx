@@ -5,8 +5,6 @@ import UpdateProfileInformationForm from './Partials/UpdateProfileInformationFor
 import { Head, Link } from '@inertiajs/react'
 
 export default function Edit({ auth, mustVerifyEmail, status }) {
-  console.log(auth.user)
-
   return (
     <AuthenticatedLayout
       user={auth.user}
