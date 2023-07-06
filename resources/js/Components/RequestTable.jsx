@@ -40,11 +40,11 @@ export default function RequestTable(livros) {
   const updatedLivros = { ...livros, links: updatedLinks }
 
   function recusarSolicitacao(bookRequest) {
-    patch(route('request.reject', bookRequest.id), {preserveScroll: true})
+    patch(route('request.reject', bookRequest.id), { preserveScroll: true })
   }
 
   function aceitarSolicitacao(bookRequest) {
-    patch(route('request.accept', bookRequest.id), {preserveScroll: true})
+    patch(route('request.accept', bookRequest.id), { preserveScroll: true })
   }
 
   return (
@@ -123,28 +123,28 @@ export default function RequestTable(livros) {
                   <td className="px-6py-3 text-left text-xs font-medium text-gray-900  border">
                     {' '}
                     <Link href={route('usuarios.show', livro.user.id)}>
-                        <div className="flex flex-col">
-                        <div className="flex gap-2">
-                            <GoPerson /> {livro.user.name}
+                      <div className="flex flex-col">
+                        <div className="flex gap-2 underline text-blue-500">
+                          <GoPerson /> {livro.user.name}
                         </div>
                         <div className="flex gap-2">
-                            <MdEmail /> {livro.user.email}
+                          <MdEmail /> {livro.user.email}
                         </div>
-                        </div>
+                      </div>
                     </Link>
                   </td>
                   <td className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase  border">
                     {new Date(livro.created_at).toLocaleDateString('pt-BR')}
                   </td>
                   <td className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase  border">
-                    {livro.status === 'PENDENTE' ? (<div className="badge badge-warning gap-2">
-                        Pendente
-                    </div>) : livro.status === 'ACEITA' ? (<div className="badge badge-success gap-2">
-                        Aceita
-                        </div>) : (<div className="badge badge-error gap-2">
-                            Recusada
-                            </div>)}
-                </td>
+                    {livro.status === 'PENDENTE' ? (
+                      <div className="badge badge-warning gap-2">Pendente</div>
+                    ) : livro.status === 'ACEITA' ? (
+                      <div className="badge badge-success gap-2">Aceita</div>
+                    ) : (
+                      <div className="badge badge-error gap-2">Recusada</div>
+                    )}
+                  </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex gap-2">
                     <label
                       htmlFor={'modalAceitar-' + livro.book.id}
