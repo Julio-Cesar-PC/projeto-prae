@@ -15,14 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('state');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->string('status');
             $table->integer('book_id');
             $table->integer('user_id');
             $table->timestamps();
 
             $table->foreign('book_id')->references('id')->on('books');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
 

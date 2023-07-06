@@ -11,7 +11,8 @@ class BookController extends Controller
 {
     public function livros()
     {
-        $livros = Book::paginate(10);
+        // dd(request()->all());
+        $livros = Book::latest()->filter(request(['search']))->paginate(10);
         return Inertia::render('Books/Index', [
             'livros' => $livros,
         ]);

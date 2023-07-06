@@ -1,6 +1,9 @@
 import { FaPlus } from 'react-icons/fa'
 import { Link, useForm } from '@inertiajs/react'
 import Pagination from '@/Components/Pagination'
+import InputLabel from './InputLabel'
+import TextInput from './TextInput'
+import { useState } from 'react'
 
 export default function TableLivros({ livros }) {
   const {
@@ -10,6 +13,7 @@ export default function TableLivros({ livros }) {
     errors,
     reset,
     delete: destroy,
+    get,
   } = useForm({})
   // Cria uma nova matriz de objetos `link` com os valores de `link.label` atualizados
   const updatedLinks = livros.links.map((link) => {
@@ -34,6 +38,7 @@ export default function TableLivros({ livros }) {
 
   // Cria um novo objeto `livros` com a propriedade `links` atualizada para usar a matriz `updatedLinks`
   const updatedLivros = { ...livros, links: updatedLinks }
+  const [search, setSearch] = useState('')
 
   function excluirLivro(livro) {
     destroy(route('livros.destroy', livro.id), {
@@ -42,16 +47,25 @@ export default function TableLivros({ livros }) {
     })
   }
 
-  function editarLivro(livro) {}
+  function searchBooks(e) {
+    e.preventDefault()
+    get(route('livros.index', { search: search }))
+  }
 
   return (
     <div className="py-12 w-full">
       <div className="max-w-full w-full mx-auto sm:px-6 lg:px-8">
         <div className="bg-white overflow-auto shadow-sm sm:rounded-lg">
-          <a href="livro/cadastro" className="btn btn-primary mb-5">
-            <FaPlus />
-            Novo Livro
-          </a>
+            <div className='flex justify-between items-center p-4'>
+                <a href="livro/cadastro" className="btn btn-primary mb-5">
+                    <FaPlus />
+                    Novo Livro
+                </a>
+                <form onSubmit={searchBooks}>
+                    <InputLabel >Pesquisar:</InputLabel>
+                    <TextInput placeholder='Titulos e autores' type='text' name='search' onChange={(e) => setSearch(e.target.value)}/>
+                </form>
+            </div>
           <table className="table min-w-full">
             <thead className="bg-gray-50">
               <tr>
@@ -81,6 +95,13 @@ export default function TableLivros({ livros }) {
                   className="px-6 py-3 text-left text-xs font-medium text-gray-900  uppercase tracking-wider"
                 >
                   {' '}
+                  Disponível{' '}
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-900  uppercase tracking-wider"
+                >
+                  {' '}
                   Ações{' '}
                 </th>
               </tr>
@@ -99,6 +120,10 @@ export default function TableLivros({ livros }) {
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 ">
                     {' '}
                     {livro.author}{' '}
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 ">
+                    {' '}
+                    {livro.available ? 'sim' : 'não'}{' '}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex gap-2">
                     <Link

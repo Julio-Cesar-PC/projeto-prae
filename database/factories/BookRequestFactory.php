@@ -20,9 +20,9 @@ class BookRequestFactory extends Factory
             "title" => fake()->sentence(),
             "state" => fake()->word(),
             "image" => fake()->imageUrl(),
-            "status" => fake()->word(),
+            "status" => fake()->randomElement(["PENDENTE", "ACEITA", "RECUSADA"]),
             "book_id" => fake()->numberBetween(1, 50),
-            "user_id" => fake()->numberBetween(2, 9),
+            "user_id" => fake()->numberBetween(2, 11),
             "created_at" => fake()->dateTime(),
             "updated_at" => fake()->dateTime(),
         ];
