@@ -18,19 +18,23 @@ export default function Authenticated({ user, header, children }) {
               {/* <div className="shrink-0 flex items-center"></div> */}
 
               <div className="space-x-8 flex items-center sm:-my-px sm:ml-10 sm:flex">
-                {user.admin ? <NavLink
-                  href={route('dashboard')}
-                  active={route().current('dashboard')}
-                >
-                  Dashboard
-                </NavLink>
-                  : <></>}
+                {user.admin ? (
                   <NavLink
+                    href={route('dashboard')}
+                    active={route().current('dashboard')}
+                  >
+                    Dashboard
+                  </NavLink>
+                ) : (
+                  <></>
+                )}
+                <NavLink
                   href={route('livros.disponiveis')}
                   active={route().current('livros.disponiveis')}
                 >
                   Livros
                 </NavLink>
+
                 { !user.admin ? (
                     <NavLink
                     href={route('request.myRequests')}
@@ -99,19 +103,24 @@ export default function Authenticated({ user, header, children }) {
                       </Dropdown.Link>
                     </Dropdown.Content>
                   </Dropdown>
-                  ) : (<></>) }
-                  { user.admin ? (
-                    <div className="indicator">
-                    <span className="indicator-item badge badge-primary">
-                        99+
+                ) : (
+                  <></>
+                )}
+                {user.admin ? (
+                  <div className="indicator">
+                    <span className="indicator-item badge badge-success">
+                      99+
                     </span>
                     <NavLink
-                        href={route('requests')}
-                        active={route().current('requests')}
+                      href={route('requests')}
+                      active={route().current('requests')}
                     >
-                        Solicitações
+                      Solicitações
                     </NavLink>
-                </div>) : (<></>) }
+                  </div>
+                ) : (
+                  <></>
+                )}
               </div>
             </div>
             <div className="hidden sm:flex sm:items-center sm:ml-6">
