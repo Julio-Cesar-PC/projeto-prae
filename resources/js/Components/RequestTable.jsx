@@ -4,15 +4,17 @@ import Pagination from '@/Components/Pagination'
 import { GoCheck, GoPerson, GoX } from 'react-icons/go'
 import { MdEmail } from 'react-icons/md'
 export default function RequestTable(livros) {
-  console.log(livros.livros.status)
   const {
     data,
     setData,
     processing,
     errors,
     reset,
+    patch,
     delete: destroy,
-  } = useForm({})
+  } = useForm({
+    id: '',
+  })
   // Cria uma nova matriz de objetos `link` com os valores de `link.label` atualizados
   const updatedLinks = livros.livros.links.map((link) => {
     // cria uma cópia do objeto link
@@ -37,14 +39,12 @@ export default function RequestTable(livros) {
   // Cria um novo objeto `livros` com a propriedade `links` atualizada para usar a matriz `updatedLinks`
   const updatedLivros = { ...livros, links: updatedLinks }
 
-  console.log(livros)
-
-  function recusarSolicitacao(livro) {
-    console.log(livro)
+  function recusarSolicitacao(bookRequest) {
+    patch(route('request.reject', bookRequest.id), {preserveScroll: true})
   }
 
-  function aceitarSolicitacao(livro) {
-    console.log(livro)
+  function aceitarSolicitacao(bookRequest) {
+    patch(route('request.accept', bookRequest.id), {preserveScroll: true})
   }
 
   return (
@@ -94,6 +94,13 @@ export default function RequestTable(livros) {
                   className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider border"
                 >
                   {' '}
+                  Status{' '}
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase tracking-wider border"
+                >
+                  {' '}
                   Ações{' '}
                 </th>
               </tr>
@@ -115,18 +122,29 @@ export default function RequestTable(livros) {
                   </td>
                   <td className="px-6py-3 text-left text-xs font-medium text-gray-900  border">
                     {' '}
-                    <div className="flex flex-col">
-                      <div className="flex gap-2">
-                        <GoPerson /> {livro.user.name}
-                      </div>
-                      <div className="flex gap-2">
-                        <MdEmail /> {livro.user.email}
-                      </div>
-                    </div>
+                    <Link href={route('usuarios.show', livro.user.id)}>
+                        <div className="flex flex-col">
+                        <div className="flex gap-2">
+                            <GoPerson /> {livro.user.name}
+                        </div>
+                        <div className="flex gap-2">
+                            <MdEmail /> {livro.user.email}
+                        </div>
+                        </div>
+                    </Link>
                   </td>
                   <td className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase  border">
                     {new Date(livro.created_at).toLocaleDateString('pt-BR')}
                   </td>
+                  <td className="px-6 py-3 text-left text-xs font-medium text-gray-900 uppercase  border">
+                    {livro.status === 'PENDENTE' ? (<div className="badge badge-warning gap-2">
+                        Pendente
+                    </div>) : livro.status === 'ACEITA' ? (<div className="badge badge-success gap-2">
+                        Aceita
+                        </div>) : (<div className="badge badge-error gap-2">
+                            Recusada
+                            </div>)}
+                </td>
                   <td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900 flex gap-2">
                     <label
                       htmlFor={'modalAceitar-' + livro.book.id}
@@ -155,14 +173,15 @@ export default function RequestTable(livros) {
                           >
                             Não
                           </label>
-                          <button
+                          <label
+                            htmlFor={'modalAceitar-' + livro.book.id}
                             className="btn btn-primary"
                             onClick={() => {
                               aceitarSolicitacao(livro)
                             }}
                           >
                             Sim
-                          </button>
+                          </label>
                         </div>
                       </form>
                       <label
@@ -200,14 +219,15 @@ export default function RequestTable(livros) {
                           >
                             Não
                           </label>
-                          <button
+                          <label
+                            htmlFor={'modalRecusar-' + livro.book.id}
                             className="btn btn-primary"
                             onClick={() => {
                               recusarSolicitacao(livro)
                             }}
                           >
                             Sim
-                          </button>
+                          </label>
                         </div>
                       </form>
                       <label
