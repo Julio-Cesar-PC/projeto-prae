@@ -4,7 +4,7 @@ import { Link, router } from '@inertiajs/react'
 export default function Pagination({ links }) {
   function getClassName(active) {
     if (active) {
-      return 'join-item btn mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary bg-blue-700 text-white'
+      return 'join-item btn mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary bg-primary text-white'
     } else {
       return 'join-item btn btn-active mr-1 mb-1 px-4 py-3 text-sm leading-4 border rounded hover:bg-white focus:border-primary focus:text-primary bg-white text-gray-700'
     }
